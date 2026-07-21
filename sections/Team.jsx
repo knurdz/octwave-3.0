@@ -58,10 +58,6 @@ export default function Team() {
                 as="article"
                 className="roster-person"
               >
-                <span className="roster-index" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-
                 <div className="roster-photo">
                   <Image
                     src={m.photo}
