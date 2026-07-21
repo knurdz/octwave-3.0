@@ -75,7 +75,7 @@ export const metadata = {
         width: ogImage.width,
         height: ogImage.height,
         alt: ogImage.alt,
-        type: "image/svg+xml",
+        type: "image/png",
       },
     ],
   },
