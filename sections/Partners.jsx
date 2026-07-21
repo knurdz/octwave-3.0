@@ -28,8 +28,7 @@ export default function Partners() {
               </h2>
             </div>
             <p className="section-sub section-sub-flush">
-              Organisations supporting OctWave 3.0 including the Knurdz Community as web partner,
-              building the platform and amplifying the wave.
+              Organisations supporting OctWave 3.0, helping to build the platform and amplify the wave.
             </p>
           </Reveal>
         </div>
