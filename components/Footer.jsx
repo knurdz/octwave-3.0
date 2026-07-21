@@ -118,7 +118,7 @@ export default function Footer() {
             aria-label="Powered by Knurdz Community"
           >
             <Image
-              src="/powered-by-knurdz.jpg"
+              src="/powered-by-knurdz-new.svg"
               alt="Powered by Knurdz Community"
               width={220}
               height={73}
