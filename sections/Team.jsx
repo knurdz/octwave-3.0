@@ -12,7 +12,7 @@ const cochairs = [
     phone: "+94 71 348 3880",
   },
   {
-    photo: "/team/Hiruna.jpeg",
+    photo: "/team/Hiruna-new.jpeg",
     name: "Hirun Jayalath",
     role: "Co-chair",
     phone: "+94 76 915 5953",
