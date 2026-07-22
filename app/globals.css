@@ -710,7 +710,7 @@ body {
         width: min(420px, 100%);
     }
     .digi-hero-visual-wrap {
-        margin-top: -3vw;
+        margin-top: -6vw;
     }
     .digi-title-version {
         font-size: 0.24em;
@@ -805,7 +805,12 @@ body {
         -webkit-filter: blur(1.5px);
         color: rgba(255, 255, 255, 0.75);
     }
-    .digi-hero-visual-wrap { margin-top: 0; }
+    .digi-hero-visual-wrap {
+        margin-top: -clamp(72px, 24vw, 120px);
+    }
+    .hero-robot {
+        width: min(440px, 90vw);
+    }
     .digi-hero-lead { font-size: 0.875rem; }
     .digi-hero-sub { font-size: 0.75rem; }
     .digi-promo-card {
