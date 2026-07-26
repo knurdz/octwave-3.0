@@ -251,6 +251,8 @@ body {
     font-weight: 600;
     text-decoration: none;
     transition: opacity 0.2s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .digi-nav-cta:hover {
     opacity: 0.9;
@@ -266,6 +268,8 @@ body {
     align-items: center;
     justify-content: center;
     width: 40px;
+    user-select: none;
+    -webkit-user-select: none;
     height: 40px;
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -690,6 +694,8 @@ body {
     font-weight: 600;
     text-decoration: none;
     transition: opacity 0.2s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .digi-promo-btn:hover {
     opacity: 0.9;
@@ -988,6 +994,8 @@ body {
     cursor: pointer;
     transition: opacity 0.2s, transform 0.15s;
     letter-spacing: 0.01em;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 .btn-outline {
@@ -1000,6 +1008,8 @@ body {
     border: 1px solid rgba(255,255,255,0.12);
     cursor: pointer;
     transition: background 0.2s, transform 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-1px); }
 
@@ -1284,6 +1294,15 @@ body {
     }
     .illu-path-draw { stroke-dashoffset: 0; }
 }
+@media (prefers-reduced-motion: reduce) {
+    .phase::details-content,
+    .codebook-chapter::details-content,
+    .phase-panel,
+    .codebook-panel {
+        transition: none;
+    }
+}
+
 @media (max-width: 960px) {
     .section-header-with-illu {
         grid-template-columns: 1fr;
@@ -1486,6 +1505,26 @@ body {
     flex: 0 0 auto;
     transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
 }
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+}
+.phase::details-content,
+.codebook-chapter::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+        block-size 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.28s ease;
+    transition-behavior: allow-discrete;
+}
+.phase[open]::details-content,
+.codebook-chapter[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+}
 .dropdown-icon::before,
 .dropdown-icon::after {
     content: "";
@@ -1527,6 +1566,8 @@ details[open] > summary .dropdown-icon::after {
     list-style: none;
     position: relative;
     z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .phase-summary::-webkit-details-marker {
     display: none;
@@ -1599,6 +1640,13 @@ details[open] > summary .dropdown-icon::after {
     padding: 0 0 34px;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.phase[open] .phase-panel {
+    opacity: 1;
+    transform: translateY(0);
 }
 .phase-body {
     display: flex;
@@ -1875,6 +1923,8 @@ details[open] > summary .dropdown-icon::after {
     list-style: none;
     position: relative;
     z-index: 1;
+    user-select: none;
+    -webkit-user-select: none;
 }
 .codebook-summary::-webkit-details-marker {
     display: none;
@@ -1951,6 +2001,13 @@ details[open] > summary .dropdown-icon::after {
     padding: 0 0 38px;
     position: relative;
     z-index: 1;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.codebook-chapter[open] .codebook-panel {
+    opacity: 1;
+    transform: translateY(0);
 }
 .codebook-list {
     list-style: none;
@@ -2396,6 +2453,14 @@ details[open] > summary .dropdown-icon::after {
     }
     .site-footer-col {
         padding-top: 0;
+    }
+    .site-footer-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 18px;
+    }
+    .site-footer-link {
+        width: 100%;
     }
     .site-footer-bar {
         flex-direction: column;
