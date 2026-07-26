@@ -83,9 +83,6 @@ export default function Rules() {
               <h2 className="section-title">
                 Rules &amp; <span className="accent-text">guidelines</span>
               </h2>
-              <p className="section-sub">
-                Read every chapter before you register. Adherence keeps OctWave fair for every participant.
-              </p>
             </div>
             <SectionIllustration variant="book" className="section-illu-header" />
           </Reveal>
@@ -96,32 +93,42 @@ export default function Rules() {
             <Reveal
               key={group.id}
               delay={gi * 60}
-              as="article"
+              as="details"
               className="codebook-chapter"
               id={`rules-ch-${group.id}`}
             >
-              <header className="codebook-head">
-                <span className="codebook-num" aria-hidden="true">
-                  {String(group.id).padStart(2, "0")}
-                </span>
-                <div className="codebook-head-copy">
-                  <p className="codebook-kicker">
-                    Chapter {String(group.id).padStart(2, "0")}
-                  </p>
-                  <h3 className="codebook-title">{group.title}</h3>
-                </div>
-              </header>
+              <summary className="codebook-summary">
+                <header className="codebook-head">
+                  <span className="codebook-num" aria-hidden="true">
+                    {String(group.id).padStart(2, "0")}
+                  </span>
+                  <div className="codebook-head-copy">
+                    <p className="codebook-kicker">
+                      Chapter {String(group.id).padStart(2, "0")}
+                    </p>
+                    <h3 className="codebook-title">{group.title}</h3>
+                  </div>
+                </header>
 
-              <ol className="codebook-list">
-                {group.rules.map((rule, ri) => (
-                  <li key={ri} className="codebook-clause">
-                    <span className="codebook-clause-num">
-                      {group.id}.{ri + 1}
-                    </span>
-                    <p className="codebook-clause-text">{rule}</p>
-                  </li>
-                ))}
-              </ol>
+                <p className="codebook-summary-meta">
+                  {group.rules.length} {group.rules.length === 1 ? "rule" : "rules"}
+                </p>
+
+                <span className="dropdown-icon" aria-hidden="true" />
+              </summary>
+
+              <div className="codebook-panel">
+                <ol className="codebook-list">
+                  {group.rules.map((rule, ri) => (
+                    <li key={ri} className="codebook-clause">
+                      <span className="codebook-clause-num">
+                        {group.id}.{ri + 1}
+                      </span>
+                      <p className="codebook-clause-text">{rule}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             </Reveal>
           ))}
         </div>

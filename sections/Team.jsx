@@ -39,9 +39,6 @@ export default function Team() {
                 The people <span className="accent-text">behind</span> the wave
               </h2>
             </div>
-            <p className="section-sub section-sub-flush">
-              IEEE IAS Student Branch Chapter at University of Moratuwa. Reach a co-chair for anything OctWave.
-            </p>
           </Reveal>
         </div>
 

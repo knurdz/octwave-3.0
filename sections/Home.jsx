@@ -9,8 +9,8 @@ const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
 const TITLE_SHARP = ["O", "c", "t"];
-const TITLE_BLUR = ["W", "a", "v"];
-const TITLE_LEN = TITLE_SHARP.length + TITLE_BLUR.length + 1;
+const TITLE_WAVE = ["W", "a", "v"];
+const TITLE_LEN = TITLE_SHARP.length + TITLE_WAVE.length + 1;
 
 function easeOutQuint(t) {
   return 1 - Math.pow(1 - t, 5);
@@ -67,7 +67,7 @@ export default function Home() {
       }
       const promo = document.querySelector(".digi-promo-slot");
       if (promo) {
-        promo.style.transform = `translate3d(0, ${y * -0.08}px, 0)`;
+        promo.style.transform = `translate3d(0, ${y * 0.1}px, 0)`;
       }
     };
 
@@ -189,8 +189,7 @@ export default function Home() {
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
-              OctWave 3.0 · IEEE IAS Student Branch Chapter · University of Moratuwa · Knurdz
-              Community web partner
+              OctWave 3.0 - IEEE IAS Student Branch Chapter - University of Moratuwa
             </span>
             <span className="digi-title-line" aria-hidden="true" ref={titleRef}>
               {TITLE_SHARP.map((ch) => (
@@ -199,16 +198,20 @@ export default function Home() {
                 </span>
               ))}
               <span className="digi-title-wave">
-                {TITLE_BLUR.map((ch) => (
-                  <span key={`b-${ch}`} className="digi-title-char digi-title-blur" data-title-char>
+                {TITLE_WAVE.map((ch) => (
+                  <span
+                    key={`w-${ch}`}
+                    className={`digi-title-char digi-title-sharp${ch === "W" ? " digi-title-w" : ""}`}
+                    data-title-char
+                  >
                     {ch}
                   </span>
                 ))}
                 <span className="digi-title-e-group digi-title-char" data-title-char>
-                  <span ref={versionRef} className="digi-title-version digi-title-blur">
+                  <span ref={versionRef} className="digi-title-version">
                     3.0
                   </span>
-                  <span className="digi-title-blur">e</span>
+                  <span className="digi-title-sharp">e</span>
                 </span>
               </span>
             </span>
@@ -224,12 +227,8 @@ export default function Home() {
         <div className="digi-hero-copy">
           <div style={anim(900)}>
             <p className="digi-hero-lead">
-              Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition. Build real
-              solutions. Learn from industry experts.
-            </p>
-            <p className="digi-hero-sub">
-              IEEE IAS Student Branch Chapter · University of Moratuwa · 2026 · workshops, a Kaggle
-              challenge, and a live final on the biggest stage.
+              Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition by IEEE IAS
+              Student Branch Chapter, University of Moratuwa.
             </p>
           </div>
         </div>

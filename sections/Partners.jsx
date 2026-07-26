@@ -1,17 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import SectionAtmosphere from "@/components/SectionAtmosphere";
 import Reveal from "@/components/Reveal";
-
-const partners = [
-  {
-    name: "Knurdz Community",
-    role: "Web Partner",
-    logo: "/partners/nurdz.png",
-    href: "https://knurdz.org",
-  },
-];
 
 export default function Partners() {
   return (
@@ -33,29 +23,9 @@ export default function Partners() {
           </Reveal>
         </div>
 
-        <div className="partners-grid parallax-layer" data-depth="0.05">
-          {partners.map((partner, i) => (
-            <Reveal key={partner.name} delay={i * 100} as="article" className="partner-card">
-              <a
-                href={partner.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="partner-logo-frame"
-                aria-label={`${partner.name} · ${partner.role}`}
-              >
-                <Image
-                  src={partner.logo}
-                  alt={`${partner.name} logo`}
-                  width={320}
-                  height={100}
-                  className="partner-logo"
-                />
-              </a>
-              <p className="partner-role">{partner.role}</p>
-              <p className="partner-name">{partner.name}</p>
-            </Reveal>
-          ))}
-        </div>
+        <Reveal className="partners-empty parallax-layer" data-depth="0.05">
+          More collaborators will be announced soon.
+        </Reveal>
       </div>
     </section>
   );

@@ -8,33 +8,23 @@ const weeks = [
   {
     wk: "01",
     title: "Register team",
-    desc: "Team registration for OctWave 3.0 has closed.",
-    meta: "Closed",
     closed: true,
   },
   {
     wk: "02",
     title: "Attend workshops",
-    desc: "AI/ML trends · Intro to ML · Models · Data engineering pipelines.",
-    meta: "4 sessions",
   },
   {
     wk: "03",
     title: "Kaggle preliminary",
-    desc: "Compete on Kaggle, submit your model + report. Top 10 advance.",
-    meta: "Online",
   },
   {
     wk: "04",
     title: "Top-10 final",
-    desc: "Real-world challenge and live presentations at University of Moratuwa.",
-    meta: "Physical · UOM",
   },
   {
     wk: "05",
     title: "Awards & recognition",
-    desc: "Winning teams, certifications, industry recognition, and career networks.",
-    meta: "Ceremony",
   },
 ];
 
@@ -81,8 +71,6 @@ export default function Timeline() {
                     {item.wk}
                   </span>
                   <h3 className="journey-title">{item.title}</h3>
-                  <p className="journey-desc">{item.desc}</p>
-                  <span className="journey-meta">{item.meta}</span>
                 </Reveal>
               </li>
             ))}
