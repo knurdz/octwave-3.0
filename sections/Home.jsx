@@ -31,6 +31,7 @@ export default function Home() {
   const versionRef = useRef(null);
   const wRef = useRef(null);
   const wFrontRef = useRef(null);
+  const regStatusRef = useRef(null);
   const heroBgRef = useRef(null);
   const heroInnerRef = useRef(null);
 
@@ -99,6 +100,7 @@ export default function Home() {
     const syncFrontW = () => {
       const w = wRef.current;
       const front = wFrontRef.current;
+      const status = regStatusRef.current;
       const inner = heroInnerRef.current;
       if (!w || !front || !inner) return;
 
@@ -114,6 +116,13 @@ export default function Home() {
       front.style.lineHeight = style.lineHeight;
       front.style.letterSpacing = style.letterSpacing;
       front.style.opacity = style.opacity;
+
+      if (status && window.getComputedStyle(status).position === "absolute") {
+        const statusRect = status.getBoundingClientRect();
+        const statusParentRect = status.offsetParent?.getBoundingClientRect() || innerRect;
+        const wCenter = wRect.left - statusParentRect.left + wRect.width / 2;
+        status.style.left = `${wCenter - statusRect.width / 2}px`;
+      }
     };
 
     if (reduceMotion || skipIntro) {
@@ -216,7 +225,7 @@ export default function Home() {
 
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
-          <p className="hero-reg-status" role="status" style={anim(200)}>
+          <p className="hero-reg-status" role="status" style={anim(200)} ref={regStatusRef}>
             Registration closed
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">

@@ -465,14 +465,25 @@ body {
 .hero-reg-status {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 50%;
     z-index: 6;
     margin: 0;
+    width: fit-content;
+    text-align: center;
+    white-space: nowrap;
+    padding: 8px 16px;
+    border: 1px solid rgba(183, 148, 246, 0.28);
+    border-radius: 999px;
+    background: rgba(183, 148, 246, 0.08);
+    box-shadow: 0 0 26px rgba(183, 148, 246, 0.14);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.55);
+    color: rgba(255, 255, 255, 0.82);
+    text-shadow: 0 0 14px rgba(183, 148, 246, 0.28);
     pointer-events: none;
 }
 .digi-hero-title-block {
@@ -604,10 +615,11 @@ body {
 }
 .digi-hero-copy {
     position: absolute;
-    right: 40px;
-    top: 48%;
+    right: clamp(24px, 5vw, 88px);
+    top: 44%;
     z-index: 4;
-    max-width: 380px;
+    width: min(330px, 26vw);
+    max-width: 330px;
     pointer-events: auto;
     will-change: transform;
 }
@@ -621,8 +633,8 @@ body {
 }
 .digi-promo-slot {
     position: absolute;
-    right: 40px;
-    top: calc(48% + 158px);
+    left: 40px;
+    top: calc(43% + 118px);
     z-index: 4;
     width: min(360px, calc(100% - 80px));
     will-change: transform;
@@ -722,6 +734,7 @@ body {
 @media (max-width: 1100px) {
     .digi-hero-copy {
         position: static;
+        width: auto;
         max-width: 420px;
         margin: 28px auto 0;
         padding: 0 8px;
@@ -808,6 +821,7 @@ body {
     }
     .hero-reg-status {
         position: static;
+        transform: none;
         margin: 0 0 16px;
         padding: 7px 14px;
         border-radius: 999px;
@@ -1813,7 +1827,10 @@ details[open] > summary .dropdown-icon::after {
     line-height: 1.25;
 }
 .timeline-status {
+    display: block;
     margin: 18px auto 0;
+    width: fit-content;
+    text-align: center;
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -1891,12 +1908,7 @@ details[open] > summary .dropdown-icon::after {
         transform: translateX(-50%);
     }
     .journey-num {
-        position: static;
-        transform: none;
-        font-size: 3rem;
-        color: rgba(255, 255, 255, 0.05);
-        margin: -4px 0 4px;
-        line-height: 0.9;
+        display: none;
     }
 }
 
@@ -1904,21 +1916,25 @@ details[open] > summary .dropdown-icon::after {
 .codebook {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 12px;
+    max-width: 980px;
+    margin: 0 auto;
 }
 .codebook-chapter {
     display: block;
     padding: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 8px;
+    background: rgba(8, 8, 12, 0.58);
+    overflow: hidden;
     position: relative;
 }
 .codebook-summary {
     display: grid;
-    grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr) 42px;
-    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) auto 36px;
+    gap: 18px;
     align-items: center;
-    padding: 38px 0;
+    padding: 18px 20px;
     cursor: pointer;
     list-style: none;
     position: relative;
@@ -1947,18 +1963,18 @@ details[open] > summary .dropdown-icon::after {
 }
 .codebook-head {
     display: flex;
-    flex-direction: column;
-    gap: 18px;
+    align-items: center;
+    gap: 16px;
     position: relative;
-    align-self: start;
+    min-width: 0;
 }
 .codebook-num {
     font-family: var(--font-playfair), Georgia, serif;
-    font-size: clamp(3.5rem, 7vw, 5.5rem);
+    font-size: clamp(2rem, 3vw, 3rem);
     font-weight: 500;
-    letter-spacing: -0.06em;
     line-height: 0.85;
-    color: rgba(255, 255, 255, 0.1);
+    min-width: 58px;
+    color: rgba(183, 148, 246, 0.18);
     transition: color 0.35s ease;
 }
 .codebook-chapter:hover .codebook-num {
@@ -1970,10 +1986,11 @@ details[open] > summary .dropdown-icon::after {
 .codebook-head-copy {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 5px;
+    min-width: 0;
 }
 .codebook-kicker {
-    font-size: 0.625rem;
+    font-size: 0.58rem;
     font-weight: 700;
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1981,10 +1998,9 @@ details[open] > summary .dropdown-icon::after {
 }
 .codebook-title {
     font-family: var(--font-playfair), Georgia, serif;
-    font-size: clamp(1.35rem, 2.4vw, 1.7rem);
+    font-size: clamp(1.1rem, 1.7vw, 1.35rem);
     font-weight: 500;
     color: #fff;
-    letter-spacing: -0.025em;
     line-height: 1.2;
 }
 .codebook-summary-meta {
@@ -1993,12 +2009,14 @@ details[open] > summary .dropdown-icon::after {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: rgba(255, 255, 255, 0.34);
+    white-space: nowrap;
+    justify-self: end;
 }
 .codebook-panel {
     display: grid;
-    grid-template-columns: minmax(140px, 0.32fr) minmax(0, 1fr) 42px;
-    gap: 48px;
-    padding: 0 0 38px;
+    grid-template-columns: 78px minmax(0, 1fr) 36px;
+    gap: 18px;
+    padding: 0 20px 18px;
     position: relative;
     z-index: 1;
     opacity: 0;
@@ -2020,8 +2038,8 @@ details[open] > summary .dropdown-icon::after {
 .codebook-clause {
     display: grid;
     grid-template-columns: 48px 1fr;
-    gap: 16px;
-    padding: 18px 0;
+    gap: 14px;
+    padding: 11px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 .codebook-clause:first-child {
@@ -2037,9 +2055,9 @@ details[open] > summary .dropdown-icon::after {
     font-variant-numeric: tabular-nums;
 }
 .codebook-clause-text {
-    font-size: 0.9375rem;
+    font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.48);
-    line-height: 1.75;
+    line-height: 1.55;
     max-width: 62ch;
 }
 
@@ -2425,22 +2443,24 @@ details[open] > summary .dropdown-icon::after {
         gap: 32px;
     }
     .codebook-summary {
-        grid-template-columns: minmax(0, 1fr) 42px;
-        gap: 16px 20px;
-        padding: 30px 0;
+        grid-template-columns: minmax(0, 1fr) auto 36px;
+        gap: 14px;
+        padding: 16px 18px;
     }
     .codebook-head {
-        flex-direction: row;
-        align-items: baseline;
-        gap: 20px;
+        align-items: center;
+        gap: 14px;
     }
     .codebook-panel {
-        grid-template-columns: 1fr;
-        gap: 0;
-        padding-bottom: 32px;
+        grid-template-columns: 70px minmax(0, 1fr) 36px;
+        gap: 14px;
+        padding: 0 18px 16px;
     }
-    .codebook-list { grid-column: 1; }
-    .codebook-num { font-size: 2.75rem; }
+    .codebook-list { grid-column: 2; }
+    .codebook-num {
+        min-width: 52px;
+        font-size: 2.35rem;
+    }
 }
 
 @media (max-width: 768px) {
@@ -2504,17 +2524,36 @@ details[open] > summary .dropdown-icon::after {
         max-width: 240px;
         gap: 36px;
     }
-    .codebook-summary { padding: 24px 0; }
-    .codebook-panel { padding-bottom: 26px; }
-    .codebook-head {
-        align-items: flex-start;
-        gap: 14px;
+    .codebook { gap: 10px; }
+    .codebook-summary {
+        grid-template-columns: minmax(0, 1fr) 32px;
+        gap: 10px;
+        padding: 15px 14px;
     }
-    .codebook-num { font-size: 2.35rem; }
+    .codebook-summary-meta {
+        grid-column: 1;
+        justify-self: start;
+        margin-left: 48px;
+        font-size: 0.67rem;
+    }
+    .codebook-panel {
+        grid-template-columns: 1fr;
+        padding: 0 14px 14px;
+    }
+    .codebook-list { grid-column: 1; }
+    .codebook-head {
+        align-items: center;
+        gap: 10px;
+    }
+    .codebook-num {
+        min-width: 38px;
+        font-size: 1.85rem;
+    }
+    .codebook-title { font-size: 1.05rem; }
     .codebook-clause {
         grid-template-columns: 40px 1fr;
-        gap: 12px;
-        padding: 14px 0;
+        gap: 10px;
+        padding: 10px 0;
     }
     .codebook-clause-text { font-size: 0.875rem; }
 }

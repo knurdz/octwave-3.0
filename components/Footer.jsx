@@ -13,7 +13,6 @@ const footerLinks = [
   { href: "#structure", label: "Structure" },
   { href: "#timeline", label: "Timeline" },
   { href: "#rules", label: "Rules" },
-  { href: "#partners", label: "Partners" },
   { href: "#team", label: "Team" },
 ];
 
