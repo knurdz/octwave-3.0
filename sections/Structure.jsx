@@ -60,24 +60,36 @@ export default function Structure() {
             <Reveal
               key={phase.num}
               delay={i * 90}
-              as="article"
+              as="details"
               className="phase"
             >
-              <div className="phase-side">
-                <span className="phase-num" aria-hidden="true">
-                  {phase.num}
-                </span>
-                <span className="phase-stage">{phase.stage}</span>
-              </div>
+              <summary className="phase-summary">
+                <div className="phase-side">
+                  <span className="phase-num" aria-hidden="true">
+                    {phase.num}
+                  </span>
+                  <span className="phase-stage">{phase.stage}</span>
+                </div>
 
-              <div className="phase-body">
-                <h3 className="phase-title">{phase.title}</h3>
-                <p className="phase-desc">{phase.desc}</p>
-                {phase.topics.length > 0 && (
-                  <p className="phase-topics">
-                    {phase.topics.join(" · ")}
+                <div className="phase-summary-copy">
+                  <h3 className="phase-title">{phase.title}</h3>
+                  <p className="phase-summary-meta">
+                    {phase.topics.length > 0 ? `${phase.topics.length} focus areas` : "Overview"}
                   </p>
-                )}
+                </div>
+
+                <span className="dropdown-icon" aria-hidden="true" />
+              </summary>
+
+              <div className="phase-panel">
+                <div className="phase-body">
+                  <p className="phase-desc">{phase.desc}</p>
+                  {phase.topics.length > 0 && (
+                    <p className="phase-topics">
+                      {phase.topics.join(" · ")}
+                    </p>
+                  )}
+                </div>
               </div>
             </Reveal>
           ))}

@@ -9,8 +9,8 @@ const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
 const TITLE_SHARP = ["O", "c", "t"];
-const TITLE_BLUR = ["W", "a", "v"];
-const TITLE_LEN = TITLE_SHARP.length + TITLE_BLUR.length + 1;
+const TITLE_WAVE = ["W", "a", "v"];
+const TITLE_LEN = TITLE_SHARP.length + TITLE_WAVE.length + 1;
 
 function easeOutQuint(t) {
   return 1 - Math.pow(1 - t, 5);
@@ -29,7 +29,10 @@ export default function Home() {
   const [instant, setInstant] = useState(false);
   const titleRef = useRef(null);
   const versionRef = useRef(null);
+  const wRef = useRef(null);
+  const wFrontRef = useRef(null);
   const heroBgRef = useRef(null);
+  const heroInnerRef = useRef(null);
 
   useEffect(() => {
     if (window.scrollY > INTRO_SCROLL_SKIP) {
@@ -67,7 +70,7 @@ export default function Home() {
       }
       const promo = document.querySelector(".digi-promo-slot");
       if (promo) {
-        promo.style.transform = `translate3d(0, ${y * -0.08}px, 0)`;
+        promo.style.transform = `translate3d(0, ${y * 0.1}px, 0)`;
       }
     };
 
@@ -93,6 +96,26 @@ export default function Home() {
     const chars = [...root.querySelectorAll("[data-title-char]")];
     const version = versionRef.current;
 
+    const syncFrontW = () => {
+      const w = wRef.current;
+      const front = wFrontRef.current;
+      const inner = heroInnerRef.current;
+      if (!w || !front || !inner) return;
+
+      const wRect = w.getBoundingClientRect();
+      const innerRect = inner.getBoundingClientRect();
+      const style = window.getComputedStyle(w);
+
+      front.style.left = `${wRect.left - innerRect.left}px`;
+      front.style.top = `${wRect.top - innerRect.top}px`;
+      front.style.width = `${wRect.width}px`;
+      front.style.height = `${wRect.height}px`;
+      front.style.fontSize = style.fontSize;
+      front.style.lineHeight = style.lineHeight;
+      front.style.letterSpacing = style.letterSpacing;
+      front.style.opacity = style.opacity;
+    };
+
     if (reduceMotion || skipIntro) {
       chars.forEach((el) => {
         el.style.opacity = "1";
@@ -102,7 +125,9 @@ export default function Home() {
         version.style.opacity = "1";
         version.style.transform = "translate(34%, 0.28em)";
       }
-      return;
+      syncFrontW();
+      window.addEventListener("resize", syncFrontW);
+      return () => window.removeEventListener("resize", syncFrontW);
     }
 
     let raf = 0;
@@ -136,6 +161,8 @@ export default function Home() {
         version.style.transform = `translate(34%, ${0.28 + (1 - vRise) * 0.35}em)`;
       }
 
+      syncFrontW();
+
       if (!allDone) {
         raf = requestAnimationFrame(tick);
       } else {
@@ -147,11 +174,16 @@ export default function Home() {
           version.style.opacity = "1";
           version.style.transform = "translate(34%, 0.28em)";
         }
+        syncFrontW();
       }
     };
 
+    window.addEventListener("resize", syncFrontW);
     raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", syncFrontW);
+    };
   }, []);
 
   const anim = (delay = 0) => ({
@@ -182,15 +214,14 @@ export default function Home() {
         <WaveDoodles preset="default" />
       </div>
 
-      <div className="digi-hero-inner">
+      <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)}>
             Registration closed
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
-              OctWave 3.0 · IEEE IAS Student Branch Chapter · University of Moratuwa · Knurdz
-              Community web partner
+              OctWave 3.0 - IEEE IAS Student Branch Chapter - University of Moratuwa
             </span>
             <span className="digi-title-line" aria-hidden="true" ref={titleRef}>
               {TITLE_SHARP.map((ch) => (
@@ -199,16 +230,21 @@ export default function Home() {
                 </span>
               ))}
               <span className="digi-title-wave">
-                {TITLE_BLUR.map((ch) => (
-                  <span key={`b-${ch}`} className="digi-title-char digi-title-blur" data-title-char>
+                {TITLE_WAVE.map((ch) => (
+                  <span
+                    key={`w-${ch}`}
+                    ref={ch === "W" ? wRef : undefined}
+                    className={`digi-title-char digi-title-sharp${ch === "W" ? " digi-title-w" : ""}`}
+                    data-title-char
+                  >
                     {ch}
                   </span>
                 ))}
                 <span className="digi-title-e-group digi-title-char" data-title-char>
-                  <span ref={versionRef} className="digi-title-version digi-title-blur">
+                  <span ref={versionRef} className="digi-title-version">
                     3.0
                   </span>
-                  <span className="digi-title-blur">e</span>
+                  <span className="digi-title-sharp">e</span>
                 </span>
               </span>
             </span>
@@ -221,15 +257,15 @@ export default function Home() {
           </div>
         </div>
 
+        <span ref={wFrontRef} className="digi-title-w-front" aria-hidden="true">
+          W
+        </span>
+
         <div className="digi-hero-copy">
           <div style={anim(900)}>
             <p className="digi-hero-lead">
-              Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition. Build real
-              solutions. Learn from industry experts.
-            </p>
-            <p className="digi-hero-sub">
-              IEEE IAS Student Branch Chapter · University of Moratuwa · 2026 · workshops, a Kaggle
-              challenge, and a live final on the biggest stage.
+              Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition by IEEE IAS
+              Student Branch Chapter, University of Moratuwa.
             </p>
           </div>
         </div>
