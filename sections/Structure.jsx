@@ -23,7 +23,7 @@ const phases = [
     num: "03",
     stage: "Compete",
     title: "Preliminary round · online",
-    desc: "Kaggle challenge + report submission. Top 10 teams advance based on leaderboard + report quality.",
+    desc: "Kaggle challenge. Top 10 teams advance based on the leaderboard.",
     topics: ["Online", "Kaggle", "Top 10 advance"],
   },
   {
@@ -47,9 +47,6 @@ export default function Structure() {
               <h2 className="section-title">
                 Four phases. <span className="accent-text">One goal.</span>
               </h2>
-              <p className="section-sub">
-                Learn the tools. Apply them competitively. Present to industry leaders.
-              </p>
             </div>
             <SectionIllustration variant="cascade" className="section-illu-header" />
           </Reveal>

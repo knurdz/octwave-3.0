@@ -6,25 +6,25 @@ import Reveal from "@/components/Reveal";
 
 const weeks = [
   {
-    wk: "01",
-    title: "Register team",
+    wk: "1",
+    title: "Team Registration",
     closed: true,
   },
   {
-    wk: "02",
-    title: "Attend workshops",
+    wk: "2",
+    title: "AI/ML Workshops",
   },
   {
-    wk: "03",
-    title: "Kaggle preliminary",
+    wk: "3",
+    title: "Kaggle Preliminary",
   },
   {
-    wk: "04",
-    title: "Top-10 final",
+    wk: "4",
+    title: "Top 10 Final Challenge Announced",
   },
   {
-    wk: "05",
-    title: "Awards & recognition",
+    wk: "5",
+    title: "Grand Finale, Awards & Recognition",
   },
 ];
 
