@@ -473,7 +473,7 @@ body {
 }
 .digi-hero-title-block {
     position: relative;
-    z-index: 5;
+    z-index: 3;
     width: 100%;
     text-align: center;
     padding-top: 4vh;
@@ -508,12 +508,38 @@ body {
     will-change: transform, opacity;
 }
 .digi-title-sharp {
-    color: #fff;
+    color: #dac8ff;
+    background: linear-gradient(180deg, #f3ecff 0%, #d8c4ff 46%, #bda2fb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .digi-title-w {
-    color: #9ea3ad;
-    -webkit-text-stroke: 1.2px rgba(5, 5, 8, 0.42);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5), 0 0 28px rgba(0, 0, 0, 0.28);
+    color: #a985f4;
+    background: linear-gradient(180deg, #d6c4ff 0%, #a985f4 48%, #8d67df 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 0;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
+}
+.digi-title-w-front {
+    position: absolute;
+    z-index: 7;
+    pointer-events: none;
+    overflow: hidden;
+    display: block;
+    font-family: var(--font-playfair), Georgia, serif;
+    font-weight: 700;
+    color: #a985f4;
+    background: linear-gradient(180deg, #d6c4ff 0%, #a985f4 48%, #8d67df 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    clip-path: inset(34% 0 0 48%);
+    text-align: left;
+    user-select: none;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
 }
 .digi-title-wave {
     display: inline-flex;
@@ -549,10 +575,10 @@ body {
 }
 .digi-hero-visual-wrap {
     position: relative;
-    z-index: 3;
+    z-index: 5;
     display: flex;
     justify-content: center;
-    margin-top: -7vw;
+    margin-top: -5.8vw;
     pointer-events: none;
 }
 .digi-hero-visual-parallax {
@@ -701,7 +727,7 @@ body {
         width: min(420px, 100%);
     }
     .digi-hero-visual-wrap {
-        margin-top: -6vw;
+        margin-top: -4.8vw;
     }
     .digi-title-version {
         font-size: 0.24em;
@@ -804,7 +830,7 @@ body {
     }
     .digi-hero-visual-wrap {
         order: 3;
-        margin-top: -clamp(72px, 24vw, 120px);
+        margin-top: -clamp(60px, 20vw, 104px);
     }
     .hero-robot {
         width: min(440px, 90vw);
