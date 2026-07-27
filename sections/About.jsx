@@ -23,7 +23,7 @@ const pillars = [
   {
     num: "04",
     title: "Recognition + awards",
-    desc: "Industry-endorsed certificates, professional recognition, and opportunities to engage with industry experts.",
+    desc: "Industry endorsed certificates ,prizes and professional recognition to engage with Industry experts",
   },
 ];
 
