@@ -5,6 +5,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import Home from "@/sections/Home";
 import About from "@/sections/About";
 import Structure from "@/sections/Structure";
+import Workshops from "@/sections/Workshops";
 import Timeline from "@/sections/Timeline";
 import Rules from "@/sections/Rules";
 import Team from "@/sections/Team";
@@ -21,6 +22,7 @@ export default function Page() {
         <div className="site-sections">
           <About />
           <Structure />
+          <Workshops />
           <Timeline />
           <Rules />
           <Team />

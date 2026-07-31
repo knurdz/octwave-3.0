@@ -11,6 +11,7 @@ const BOOKLET_URL =
 const footerLinks = [
   { href: "#about", label: "About" },
   { href: "#structure", label: "Structure" },
+  { href: "#workshops", label: "Workshops" },
   { href: "#timeline", label: "Timeline" },
   { href: "#rules", label: "Rules" },
   { href: "#team", label: "Team" },
