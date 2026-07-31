@@ -6,6 +6,7 @@ const links = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
   { id: "structure", label: "Structure" },
+  { id: "workshops", label: "Workshops" },
   { id: "timeline", label: "Timeline" },
   { id: "rules", label: "Rules" },
   { id: "team", label: "Team" },
