@@ -700,12 +700,12 @@ body {
 .digi-reg-widget {
     flex: 0 0 100%;
     margin-top: 2px;
-    padding-top: 14px;
+    padding-top: 12px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .digi-countdown {
     width: 100%;
-    margin: 0 0 12px;
+    margin: 12px 0 0;
 }
 .digi-countdown-label {
     display: inline-flex;
@@ -752,7 +752,7 @@ body {
     flex-direction: column;
     gap: 2px;
     min-width: 0;
-    padding: 9px 10px;
+    padding: 8px 10px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
 }
 .digi-countdown-value {
@@ -807,7 +807,7 @@ body {
     justify-content: center;
     gap: 8px;
     min-height: 44px;
-    padding: 10px 16px;
+    padding: 10px 18px;
     background: linear-gradient(135deg, #c4a5ff 0%, var(--accent) 52%, #8f67eb 100%);
     color: #050508;
     border-radius: 999px;
@@ -836,6 +836,7 @@ body {
     outline-offset: 3px;
 }
 .digi-promo-btn-secondary {
+    flex: 1 1 auto;
     background: rgba(255, 255, 255, 0.035);
     color: rgba(255, 255, 255, 0.78);
     border: 1px solid rgba(255, 255, 255, 0.16);

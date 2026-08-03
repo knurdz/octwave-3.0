@@ -62,22 +62,6 @@ function ExternalArrowIcon() {
 function RegistrationCountdownWidget({ countdown }) {
   return (
     <div className="digi-reg-widget">
-      <div className="digi-countdown" aria-live="polite">
-        <p className="digi-countdown-label">
-          <span>{countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}</span>
-        </p>
-        {countdown && !countdown.closed && (
-          <div className="digi-countdown-grid" aria-label="Registration countdown">
-            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
-              <span className="digi-countdown-unit" key={key}>
-                <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
-                <span className="digi-countdown-name">{label}</span>
-                {index < COUNTDOWN_UNITS.length - 1 && <span className="digi-countdown-divider" aria-hidden="true" />}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
       <div className="digi-promo-actions">
         <a
           href={REGISTRATION_URL}
@@ -98,6 +82,22 @@ function RegistrationCountdownWidget({ countdown }) {
         >
           View booklet
         </a>
+      </div>
+      <div className="digi-countdown" aria-live="polite">
+        <p className="digi-countdown-label">
+          <span>{countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}</span>
+        </p>
+        {countdown && !countdown.closed && (
+          <div className="digi-countdown-grid" aria-label="Registration countdown">
+            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
+              <span className="digi-countdown-unit" key={key}>
+                <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
+                <span className="digi-countdown-name">{label}</span>
+                {index < COUNTDOWN_UNITS.length - 1 && <span className="digi-countdown-divider" aria-hidden="true" />}
+              </span>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
