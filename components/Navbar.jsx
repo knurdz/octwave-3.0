@@ -12,6 +12,7 @@ const links = [
   { id: "team", label: "Team" },
 ];
 
+const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
@@ -113,9 +114,18 @@ export default function Navbar() {
             href={BOOKLET_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="digi-nav-cta"
+            className="digi-nav-cta digi-nav-cta-secondary"
           >
             Booklet
+          </a>
+
+          <a
+            href={REGISTRATION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="digi-nav-cta"
+          >
+            Register
             <ArrowIcon />
           </a>
 
@@ -148,10 +158,19 @@ export default function Navbar() {
               href={BOOKLET_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="digi-nav-cta digi-nav-cta-full"
+              className="digi-nav-cta digi-nav-cta-secondary digi-nav-cta-full"
               onClick={closeMenu}
             >
               Booklet
+            </a>
+            <a
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="digi-nav-cta digi-nav-cta-full"
+              onClick={closeMenu}
+            >
+              Register
               <ArrowIcon />
             </a>
           </div>

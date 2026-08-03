@@ -5,6 +5,7 @@ import Image from "next/image";
 import HeroVisual from "@/components/HeroVisual";
 import WaveDoodles from "@/components/WaveDoodles";
 
+const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
@@ -23,15 +24,93 @@ function clamp01(t) {
 // If the page loads already scrolled past this point (refresh mid-page),
 // entrance animations are skipped and the hero renders in its settled state.
 const INTRO_SCROLL_SKIP = 24;
+const REGISTRATION_DEADLINE = new Date("2026-08-08T23:59:00+05:30").getTime();
+const COUNTDOWN_UNITS = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Mins" },
+];
+
+function getRegistrationCountdown() {
+  const remaining = Math.max(0, REGISTRATION_DEADLINE - Date.now());
+  const day = 24 * 60 * 60 * 1000;
+  const hour = 60 * 60 * 1000;
+  const minute = 60 * 1000;
+
+  return {
+    days: Math.floor(remaining / day),
+    hours: Math.floor((remaining % day) / hour),
+    minutes: Math.floor((remaining % hour) / minute),
+    closed: remaining <= 0,
+  };
+}
+
+function ExternalArrowIcon() {
+  return (
+    <svg className="digi-promo-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7 17 17 7M17 7H9M17 7v8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function RegistrationCountdownWidget({ countdown }) {
+  return (
+    <div className="digi-reg-widget">
+      <div className="digi-promo-actions">
+        <a
+          href={REGISTRATION_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="digi-promo-btn"
+          aria-label="Register for OctWave 3.0"
+        >
+          Register now
+          <ExternalArrowIcon />
+        </a>
+        <a
+          href={BOOKLET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="digi-promo-btn digi-promo-btn-secondary"
+          aria-label="View the OctWave 3.0 delegate booklet"
+        >
+          View booklet
+        </a>
+      </div>
+      <div className="digi-countdown" aria-live="polite">
+        <p className="digi-countdown-label">
+          <span>{countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}</span>
+        </p>
+        {countdown && !countdown.closed && (
+          <div className="digi-countdown-grid" aria-label="Registration countdown">
+            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
+              <span className="digi-countdown-unit" key={key}>
+                <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
+                <span className="digi-countdown-name">{label}</span>
+                {index < COUNTDOWN_UNITS.length - 1 && <span className="digi-countdown-divider" aria-hidden="true" />}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
   const [instant, setInstant] = useState(false);
+  const [countdown, setCountdown] = useState(null);
   const titleRef = useRef(null);
   const versionRef = useRef(null);
   const wRef = useRef(null);
   const wFrontRef = useRef(null);
-  const regStatusRef = useRef(null);
   const heroBgRef = useRef(null);
   const heroInnerRef = useRef(null);
 
@@ -43,6 +122,13 @@ export default function Home() {
     }
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const updateCountdown = () => setCountdown(getRegistrationCountdown());
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 30000);
+    return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -100,7 +186,6 @@ export default function Home() {
     const syncFrontW = () => {
       const w = wRef.current;
       const front = wFrontRef.current;
-      const status = regStatusRef.current;
       const inner = heroInnerRef.current;
       if (!w || !front || !inner) return;
 
@@ -116,13 +201,6 @@ export default function Home() {
       front.style.lineHeight = style.lineHeight;
       front.style.letterSpacing = style.letterSpacing;
       front.style.opacity = style.opacity;
-
-      if (status && window.getComputedStyle(status).position === "absolute") {
-        const statusRect = status.getBoundingClientRect();
-        const statusParentRect = status.offsetParent?.getBoundingClientRect() || innerRect;
-        const wCenter = wRect.left - statusParentRect.left + wRect.width / 2;
-        status.style.left = `${wCenter - statusRect.width / 2}px`;
-      }
     };
 
     if (reduceMotion || skipIntro) {
@@ -225,8 +303,8 @@ export default function Home() {
 
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
-          <p className="hero-reg-status" role="status" style={anim(200)} ref={regStatusRef}>
-            Registration closed
+          <p className="hero-reg-status" role="status" style={anim(200)}>
+            Registrations open
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -276,6 +354,14 @@ export default function Home() {
               Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition by IEEE IAS
               Student Branch Chapter, University of Moratuwa.
             </p>
+            <a
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="digi-hero-mobile-register"
+            >
+              Register now
+            </a>
           </div>
         </div>
 
@@ -285,18 +371,13 @@ export default function Home() {
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Delegates guide</p>
-              <p className="digi-promo-title">Everything you need for OctWave 3.0</p>
+              <p className="digi-promo-eyebrow">Registrations open</p>
+              <p className="digi-promo-title">Register for OctWave 3.0</p>
               <p className="digi-promo-desc">
-                Schedule, structure, rules, and stage details all in one place.
+                Submit your team details through the official registration form.
               </p>
-              <a href={BOOKLET_URL} target="_blank" rel="noopener noreferrer" className="digi-promo-btn">
-                View booklet
-                <span className="digi-promo-btn-icon" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
             </div>
+            <RegistrationCountdownWidget countdown={countdown} />
           </aside>
         </div>
       </div>

@@ -258,6 +258,11 @@ body {
     opacity: 0.9;
     transform: translateY(-1px);
 }
+.digi-nav-cta-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
 .digi-nav-cta-full {
     justify-content: center;
     width: 100%;
@@ -464,26 +469,20 @@ body {
 }
 .hero-reg-status {
     position: absolute;
-    top: 0;
-    left: 50%;
+    top: 4px;
+    left: 0;
     z-index: 6;
     margin: 0;
     width: fit-content;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
-    padding: 8px 16px;
-    border: 1px solid rgba(183, 148, 246, 0.28);
-    border-radius: 999px;
-    background: rgba(183, 148, 246, 0.08);
-    box-shadow: 0 0 26px rgba(183, 148, 246, 0.14);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    font-size: 0.6875rem;
+    padding: 0 0 0 18px;
+    border-left: 2px solid rgba(183, 148, 246, 0.72);
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.82);
-    text-shadow: 0 0 14px rgba(183, 148, 246, 0.28);
+    color: rgba(255, 255, 255, 0.68);
     pointer-events: none;
 }
 .digi-hero-title-block {
@@ -631,16 +630,20 @@ body {
     color: #fff;
     margin-bottom: 0;
 }
+.digi-hero-mobile-register {
+    display: none;
+}
 .digi-promo-slot {
     position: absolute;
     left: 40px;
-    top: calc(43% + 118px);
+    top: calc(43% + 58px);
     z-index: 4;
     width: min(360px, calc(100% - 80px));
     will-change: transform;
 }
 .digi-promo-card {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: 16px;
     width: 100%;
@@ -692,26 +695,157 @@ body {
     font-size: 0.6875rem;
     line-height: 1.55;
     color: rgba(255, 255, 255, 0.45);
-    margin-bottom: 14px;
+    margin-bottom: 0;
 }
-.digi-promo-btn {
+.digi-reg-widget {
+    flex: 0 0 100%;
+    margin-top: 2px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.digi-countdown {
+    width: 100%;
+    margin: 12px 0 0;
+}
+.digi-countdown-label {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 14px;
-    background: var(--accent);
+    margin: 0 0 8px;
+    padding: 0;
+    max-width: none;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #eadfff;
+}
+.digi-countdown-label::before {
+    content: "";
+    width: 2px;
+    height: 13px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #d8c8ff, var(--accent));
+    box-shadow: 0 0 10px rgba(167, 139, 250, 0.38);
+}
+.digi-countdown-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid rgba(167, 139, 250, 0.18);
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 16% 0%, rgba(196, 165, 255, 0.18), transparent 38%),
+        linear-gradient(135deg, rgba(167, 139, 250, 0.14), rgba(255, 255, 255, 0.025)),
+        rgba(12, 12, 18, 0.72);
+    box-shadow:
+        0 12px 26px rgba(0, 0, 0, 0.28),
+        0 0 22px rgba(167, 139, 250, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.digi-countdown-unit {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    padding: 8px 10px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+}
+.digi-countdown-value {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+.digi-countdown-name {
+    font-size: 0.54rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
+}
+.digi-countdown-divider {
+    position: absolute;
+    top: 50%;
+    right: -4px;
+    z-index: 1;
+    width: 8px;
+    height: 18px;
+    transform: translateY(-50%);
+}
+.digi-countdown-divider::before,
+.digi-countdown-divider::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(167, 139, 250, 0.8);
+    box-shadow: 0 0 8px rgba(167, 139, 250, 0.45);
+    transform: translateX(-50%);
+}
+.digi-countdown-divider::before { top: 4px; }
+.digi-countdown-divider::after { bottom: 4px; }
+.digi-promo-actions {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+.digi-promo-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #c4a5ff 0%, var(--accent) 52%, #8f67eb 100%);
     color: #050508;
     border-radius: 999px;
-    font-size: 0.6875rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 800;
     text-decoration: none;
-    transition: opacity 0.2s, transform 0.15s;
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.14) inset,
+        inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
     user-select: none;
     -webkit-user-select: none;
 }
 .digi-promo-btn:hover {
-    opacity: 0.9;
+    opacity: 0.96;
     transform: translateY(-1px);
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.16) inset,
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+.digi-promo-btn:active {
+    transform: translateY(0);
+}
+.digi-promo-btn:focus-visible {
+    outline: 2px solid #d8c8ff;
+    outline-offset: 3px;
+}
+.digi-promo-btn-secondary {
+    flex: 1 1 auto;
+    background: rgba(255, 255, 255, 0.035);
+    color: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: none;
+    animation: none;
+}
+.digi-promo-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 1px rgba(167, 139, 250, 0.12) inset;
 }
 .digi-promo-btn-icon {
     display: inline-flex;
@@ -720,8 +854,9 @@ body {
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(0, 0, 0, 0.16);
     font-size: 0.625rem;
+    flex: 0 0 auto;
 }
 
 .site-sections {
@@ -814,7 +949,7 @@ body {
     }
     .digi-hero-copy {
         order: 2;
-        margin: 14px auto 0;
+        margin: 12px auto 0;
         max-width: 390px;
         padding: 0;
         text-align: center;
@@ -823,15 +958,12 @@ body {
         position: static;
         transform: none;
         margin: 0 0 16px;
-        padding: 7px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        padding: 0 0 0 12px;
+        border-left: 2px solid rgba(183, 148, 246, 0.72);
         font-size: 0.625rem;
         letter-spacing: 0.14em;
-        color: rgba(255, 255, 255, 0.72);
+        color: rgba(255, 255, 255, 0.68);
+        align-self: flex-start;
     }
     .digi-hero-title {
         letter-spacing: -0.03em;
@@ -860,6 +992,22 @@ body {
         line-height: 1.45;
         text-shadow: 0 2px 14px rgba(0, 0, 0, 0.46);
     }
+    .digi-hero-mobile-register {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+        padding: 10px 18px;
+        min-height: 38px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #050508;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+    }
     .digi-promo-slot {
         order: 4;
         margin-top: -16px;
@@ -868,6 +1016,10 @@ body {
         flex-direction: column;
         align-items: flex-start;
         width: 100%;
+    }
+    .digi-countdown {
+        width: 100%;
+        margin-left: 0;
     }
     .site-footer-actions {
         flex-direction: column;
