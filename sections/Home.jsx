@@ -45,6 +45,64 @@ function getRegistrationCountdown() {
   };
 }
 
+function ExternalArrowIcon() {
+  return (
+    <svg className="digi-promo-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M7 17 17 7M17 7H9M17 7v8"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function RegistrationCountdownWidget({ countdown }) {
+  return (
+    <div className="digi-reg-widget">
+      <div className="digi-countdown" aria-live="polite">
+        <p className="digi-countdown-label">
+          <span>{countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}</span>
+        </p>
+        {countdown && !countdown.closed && (
+          <div className="digi-countdown-grid" aria-label="Registration countdown">
+            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
+              <span className="digi-countdown-unit" key={key}>
+                <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
+                <span className="digi-countdown-name">{label}</span>
+                {index < COUNTDOWN_UNITS.length - 1 && <span className="digi-countdown-divider" aria-hidden="true" />}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+      <div className="digi-promo-actions">
+        <a
+          href={REGISTRATION_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="digi-promo-btn"
+          aria-label="Register for OctWave 3.0"
+        >
+          Register now
+          <ExternalArrowIcon />
+        </a>
+        <a
+          href={BOOKLET_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="digi-promo-btn digi-promo-btn-secondary"
+          aria-label="View the OctWave 3.0 delegate booklet"
+        >
+          View booklet
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   const [visible, setVisible] = useState(false);
   const [instant, setInstant] = useState(false);
@@ -318,38 +376,8 @@ export default function Home() {
               <p className="digi-promo-desc">
                 Submit your team details through the official registration form.
               </p>
-              <div className="digi-countdown" aria-live="polite">
-                <p className="digi-countdown-label">
-                  {countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}
-                </p>
-                {countdown && !countdown.closed && (
-                  <div className="digi-countdown-grid" aria-label="Registration countdown">
-                    {COUNTDOWN_UNITS.map(({ key, label }) => (
-                      <span className="digi-countdown-unit" key={key}>
-                        <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
-                        <span className="digi-countdown-name">{label}</span>
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-              <div className="digi-promo-actions">
-              <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="digi-promo-btn">
-                Register now
-                <span className="digi-promo-btn-icon" aria-hidden="true">
-                  ↗
-                </span>
-              </a>
-                <a
-                  href={BOOKLET_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="digi-promo-btn digi-promo-btn-secondary"
-                >
-                  View booklet
-                </a>
-              </div>
             </div>
+            <RegistrationCountdownWidget countdown={countdown} />
           </aside>
         </div>
       </div>
