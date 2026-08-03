@@ -460,6 +460,7 @@ body {
 }
 .digi-hero-inner {
     position: relative;
+    top: -24px;
     z-index: 2;
     min-height: 100vh;
     min-height: 100dvh;
@@ -636,7 +637,7 @@ body {
 .digi-promo-slot {
     position: absolute;
     left: 40px;
-    top: calc(43% + 58px);
+    top: calc(43% + 32px);
     z-index: 4;
     width: min(360px, calc(100% - 80px));
     will-change: transform;
@@ -877,7 +878,7 @@ body {
     }
     .digi-promo-slot {
         position: static;
-        margin: 28px auto 0;
+        margin: 12px auto 0;
         width: min(420px, 100%);
     }
     .digi-hero-visual-wrap {
@@ -938,6 +939,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        top: -16px;
         padding: 88px 16px 40px;
     }
     .digi-hero-title-block {
@@ -1010,7 +1012,7 @@ body {
     }
     .digi-promo-slot {
         order: 4;
-        margin-top: -16px;
+        margin-top: -42px;
     }
     .digi-promo-card {
         flex-direction: column;
