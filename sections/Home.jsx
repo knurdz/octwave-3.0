@@ -24,10 +24,31 @@ function clamp01(t) {
 // If the page loads already scrolled past this point (refresh mid-page),
 // entrance animations are skipped and the hero renders in its settled state.
 const INTRO_SCROLL_SKIP = 24;
+const REGISTRATION_DEADLINE = new Date("2026-08-08T23:59:00+05:30").getTime();
+const COUNTDOWN_UNITS = [
+  { key: "days", label: "Days" },
+  { key: "hours", label: "Hours" },
+  { key: "minutes", label: "Mins" },
+];
+
+function getRegistrationCountdown() {
+  const remaining = Math.max(0, REGISTRATION_DEADLINE - Date.now());
+  const day = 24 * 60 * 60 * 1000;
+  const hour = 60 * 60 * 1000;
+  const minute = 60 * 1000;
+
+  return {
+    days: Math.floor(remaining / day),
+    hours: Math.floor((remaining % day) / hour),
+    minutes: Math.floor((remaining % hour) / minute),
+    closed: remaining <= 0,
+  };
+}
 
 export default function Home() {
   const [visible, setVisible] = useState(false);
   const [instant, setInstant] = useState(false);
+  const [countdown, setCountdown] = useState(null);
   const titleRef = useRef(null);
   const versionRef = useRef(null);
   const wRef = useRef(null);
@@ -43,6 +64,13 @@ export default function Home() {
     }
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    const updateCountdown = () => setCountdown(getRegistrationCountdown());
+    updateCountdown();
+    const timer = window.setInterval(updateCountdown, 30000);
+    return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -268,6 +296,14 @@ export default function Home() {
               Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition by IEEE IAS
               Student Branch Chapter, University of Moratuwa.
             </p>
+            <a
+              href={REGISTRATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="digi-hero-mobile-register"
+            >
+              Register now
+            </a>
           </div>
         </div>
 
@@ -282,6 +318,21 @@ export default function Home() {
               <p className="digi-promo-desc">
                 Submit your team details through the official registration form.
               </p>
+              <div className="digi-countdown" aria-live="polite">
+                <p className="digi-countdown-label">
+                  {countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}
+                </p>
+                {countdown && !countdown.closed && (
+                  <div className="digi-countdown-grid" aria-label="Registration countdown">
+                    {COUNTDOWN_UNITS.map(({ key, label }) => (
+                      <span className="digi-countdown-unit" key={key}>
+                        <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
+                        <span className="digi-countdown-name">{label}</span>
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
               <div className="digi-promo-actions">
               <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="digi-promo-btn">
                 Register now

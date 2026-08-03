@@ -630,6 +630,9 @@ body {
     color: #fff;
     margin-bottom: 0;
 }
+.digi-hero-mobile-register {
+    display: none;
+}
 .digi-promo-slot {
     position: absolute;
     left: 40px;
@@ -692,6 +695,47 @@ body {
     line-height: 1.55;
     color: rgba(255, 255, 255, 0.45);
     margin-bottom: 14px;
+}
+.digi-countdown {
+    margin: 0 0 14px;
+}
+.digi-countdown-label {
+    margin: 0 0 8px;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.54);
+}
+.digi-countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    max-width: 210px;
+}
+.digi-countdown-unit {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 7px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.035);
+}
+.digi-countdown-value {
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    font-variant-numeric: tabular-nums;
+}
+.digi-countdown-name {
+    font-size: 0.54rem;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.42);
 }
 .digi-promo-actions {
     display: flex;
@@ -824,7 +868,7 @@ body {
     }
     .digi-hero-copy {
         order: 2;
-        margin: 14px auto 0;
+        margin: 12px auto 0;
         max-width: 390px;
         padding: 0;
         text-align: center;
@@ -866,6 +910,22 @@ body {
         font-size: 0.875rem;
         line-height: 1.45;
         text-shadow: 0 2px 14px rgba(0, 0, 0, 0.46);
+    }
+    .digi-hero-mobile-register {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 14px;
+        padding: 10px 18px;
+        min-height: 38px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #050508;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
     }
     .digi-promo-slot {
         order: 4;
