@@ -8,7 +8,6 @@ const weeks = [
   {
     wk: "1",
     title: "Team Registration",
-    closed: true,
   },
   {
     wk: "2",
@@ -44,7 +43,7 @@ export default function Timeline() {
               Five weeks from registration to the awards stage.
             </p>
             <p className="timeline-status" role="status">
-              Registration closed
+              Registrations open
             </p>
             <SectionIllustration variant="path" float={false} className="section-illu-path" />
           </Reveal>

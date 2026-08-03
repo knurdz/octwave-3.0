@@ -12,8 +12,7 @@ const links = [
   { id: "team", label: "Team" },
 ];
 
-const BOOKLET_URL =
-  "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
+const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 
 function ArrowIcon() {
   return (
@@ -110,12 +109,12 @@ export default function Navbar() {
 
         <div className="digi-nav-actions">
           <a
-            href={BOOKLET_URL}
+            href={REGISTRATION_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="digi-nav-cta"
           >
-            Booklet
+            Register
             <ArrowIcon />
           </a>
 
@@ -145,13 +144,13 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href={BOOKLET_URL}
+              href={REGISTRATION_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="digi-nav-cta digi-nav-cta-full"
               onClick={closeMenu}
             >
-              Booklet
+              Register
               <ArrowIcon />
             </a>
           </div>

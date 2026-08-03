@@ -5,8 +5,7 @@ import Image from "next/image";
 import HeroVisual from "@/components/HeroVisual";
 import WaveDoodles from "@/components/WaveDoodles";
 
-const BOOKLET_URL =
-  "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
+const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 
 const TITLE_SHARP = ["O", "c", "t"];
 const TITLE_WAVE = ["W", "a", "v"];
@@ -226,7 +225,7 @@ export default function Home() {
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)} ref={regStatusRef}>
-            Registration closed
+            Registrations open
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -285,13 +284,13 @@ export default function Home() {
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Delegates guide</p>
-              <p className="digi-promo-title">Everything you need for OctWave 3.0</p>
+              <p className="digi-promo-eyebrow">Registrations open</p>
+              <p className="digi-promo-title">Register for OctWave 3.0</p>
               <p className="digi-promo-desc">
-                Schedule, structure, rules, and stage details all in one place.
+                Submit your team details through the official registration form.
               </p>
-              <a href={BOOKLET_URL} target="_blank" rel="noopener noreferrer" className="digi-promo-btn">
-                View booklet
+              <a href={REGISTRATION_URL} target="_blank" rel="noopener noreferrer" className="digi-promo-btn">
+                Register now
                 <span className="digi-promo-btn-icon" aria-hidden="true">
                   ↗
                 </span>
