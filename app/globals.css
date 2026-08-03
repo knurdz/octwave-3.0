@@ -258,6 +258,11 @@ body {
     opacity: 0.9;
     transform: translateY(-1px);
 }
+.digi-nav-cta-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
 .digi-nav-cta-full {
     justify-content: center;
     width: 100%;
@@ -464,26 +469,20 @@ body {
 }
 .hero-reg-status {
     position: absolute;
-    top: 0;
-    left: 50%;
+    top: 4px;
+    left: 0;
     z-index: 6;
     margin: 0;
     width: fit-content;
-    text-align: center;
+    text-align: left;
     white-space: nowrap;
-    padding: 8px 16px;
-    border: 1px solid rgba(183, 148, 246, 0.28);
-    border-radius: 999px;
-    background: rgba(183, 148, 246, 0.08);
-    box-shadow: 0 0 26px rgba(183, 148, 246, 0.14);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    font-size: 0.6875rem;
+    padding: 0 0 0 18px;
+    border-left: 2px solid rgba(183, 148, 246, 0.72);
+    font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.82);
-    text-shadow: 0 0 14px rgba(183, 148, 246, 0.28);
+    color: rgba(255, 255, 255, 0.68);
     pointer-events: none;
 }
 .digi-hero-title-block {
@@ -694,6 +693,12 @@ body {
     color: rgba(255, 255, 255, 0.45);
     margin-bottom: 14px;
 }
+.digi-promo-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
 .digi-promo-btn {
     display: inline-flex;
     align-items: center;
@@ -712,6 +717,11 @@ body {
 .digi-promo-btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+}
+.digi-promo-btn-secondary {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 .digi-promo-btn-icon {
     display: inline-flex;
@@ -823,15 +833,12 @@ body {
         position: static;
         transform: none;
         margin: 0 0 16px;
-        padding: 7px 14px;
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        padding: 0 0 0 12px;
+        border-left: 2px solid rgba(183, 148, 246, 0.72);
         font-size: 0.625rem;
         letter-spacing: 0.14em;
-        color: rgba(255, 255, 255, 0.72);
+        color: rgba(255, 255, 255, 0.68);
+        align-self: flex-start;
     }
     .digi-hero-title {
         letter-spacing: -0.03em;

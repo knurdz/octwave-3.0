@@ -13,6 +13,8 @@ const links = [
 ];
 
 const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
+const BOOKLET_URL =
+  "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
 function ArrowIcon() {
   return (
@@ -109,6 +111,15 @@ export default function Navbar() {
 
         <div className="digi-nav-actions">
           <a
+            href={BOOKLET_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="digi-nav-cta digi-nav-cta-secondary"
+          >
+            Booklet
+          </a>
+
+          <a
             href={REGISTRATION_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -143,6 +154,15 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
+            <a
+              href={BOOKLET_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="digi-nav-cta digi-nav-cta-secondary digi-nav-cta-full"
+              onClick={closeMenu}
+            >
+              Booklet
+            </a>
             <a
               href={REGISTRATION_URL}
               target="_blank"
