@@ -13,7 +13,7 @@ const PARTNERS = [
   },
   {
     name: "HackSL",
-    fullName: "Digital media partner for OctWave 3.0",
+    fullName: "",
     role: "Digital Media Partner",
     logo: "/partners/hacksl.jpg",
   },
@@ -60,7 +60,7 @@ export default function Partners() {
                 </div>
                 <div className="partner-copy">
                   <h3>{partner.name}</h3>
-                  <p>{partner.fullName}</p>
+                  {partner.fullName ? <p>{partner.fullName}</p> : null}
                 </div>
                 <span className="partner-line partner-line-top" aria-hidden="true" />
                 <span className="partner-line partner-line-left" aria-hidden="true" />
