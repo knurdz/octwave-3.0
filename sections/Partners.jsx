@@ -10,12 +10,14 @@ const PARTNERS = [
     fullName: "Colombo West International Terminal (Private) Limited",
     role: "Gold Partner",
     logo: "/partners/cwit.jpg",
+    url: "https://www.cwit.lk/",
   },
   {
     name: "HackSL",
     fullName: "",
     role: "Digital Media Partner",
     logo: "/partners/hacksl.jpg",
+    url: "https://www.linkedin.com/company/hacksl/?originalSubdomain=lk",
   },
 ];
 
@@ -41,7 +43,14 @@ export default function Partners() {
 
         <Reveal className="partners-grid parallax-layer" data-depth="0.05">
           {PARTNERS.map((partner) => (
-            <article className="partner-shell" key={partner.name}>
+            <a
+              className="partner-shell"
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${partner.name}`}
+              key={partner.name}
+            >
               <span className="partner-dot" aria-hidden="true" />
               <div className="partner-card">
                 <span className="partner-ray" aria-hidden="true" />
@@ -67,7 +76,7 @@ export default function Partners() {
                 <span className="partner-line partner-line-bottom" aria-hidden="true" />
                 <span className="partner-line partner-line-right" aria-hidden="true" />
               </div>
-            </article>
+            </a>
           ))}
         </Reveal>
       </div>

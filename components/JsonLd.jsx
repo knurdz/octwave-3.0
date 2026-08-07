@@ -48,6 +48,7 @@ export default function JsonLd() {
         sponsor: eventPartners.map((partner) => ({
           "@type": "Organization",
           name: partner.name,
+          url: partner.url,
         })),
       },
     ],
