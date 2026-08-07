@@ -2601,7 +2601,7 @@ details[open] > summary .dropdown-icon::after {
 /* ── Partners ────────────────────────────────────── */
 .partners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 300px));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 330px));
     gap: 28px;
     justify-content: center;
     align-items: center;
@@ -2611,7 +2611,7 @@ details[open] > summary .dropdown-icon::after {
 .partner-shell {
     position: relative;
     display: block;
-    width: min(300px, 100%);
+    width: min(330px, 100%);
     height: 260px;
     padding: 1px;
     border-radius: 10px;
@@ -2641,14 +2641,14 @@ details[open] > summary .dropdown-icon::after {
     position: relative;
     z-index: 1;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: 26px 82px minmax(66px, 1fr);
     align-items: center;
-    justify-content: center;
+    justify-items: center;
     gap: 14px;
     width: 100%;
     height: 100%;
-    padding: 18px;
+    padding: 34px 18px 22px;
     border: 1px solid #2a1f45;
     border-radius: 9px;
     background: radial-gradient(circle 180px at 0% 0%, #2e2154, #0c0d0d);
@@ -2675,20 +2675,24 @@ details[open] > summary .dropdown-icon::after {
 }
 .partner-tier {
     align-self: flex-start;
+    justify-self: start;
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 2px;
-    color: #c4b5fd;
+    margin: 0 0 2px 0;
+    padding: 4px 8px 4px 0;
+    color: #e9d5ff;
     font-family: var(--font-grotesk), ui-monospace, SFMono-Regular, Consolas, monospace;
-    font-size: 0.625rem;
-    font-weight: 700;
+    font-size: 0.8125rem;
+    font-weight: 800;
     line-height: 1;
     text-transform: uppercase;
+    background: linear-gradient(90deg, rgba(109, 40, 217, 0.22), transparent 88%);
+    text-shadow: 0 0 10px rgba(196, 181, 253, 0.26);
 }
 .partner-tier-bar {
-    width: 2px;
-    height: 16px;
+    width: 3px;
+    height: 18px;
     border-radius: 999px;
     background: linear-gradient(180deg, #c4b5fd, #6d28d9);
 }
@@ -2696,11 +2700,12 @@ details[open] > summary .dropdown-icon::after {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(178px, 100%);
+    width: min(190px, 100%);
     height: 82px;
-    padding: 10px;
-    border-radius: 6px;
-    background: #f3e8ff;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
+    align-self: start;
 }
 .partner-logo {
     width: 100%;
@@ -2711,8 +2716,12 @@ details[open] > summary .dropdown-icon::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 225px;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 255px;
+    min-height: 66px;
     text-align: center;
+    justify-self: center;
 }
 .partner-copy h3 {
     margin: 0;
@@ -2721,12 +2730,14 @@ details[open] > summary .dropdown-icon::after {
     font-weight: 800;
     line-height: 0.95;
     color: #e9d5ff;
+    text-align: center;
 }
 .partner-copy p {
-    margin: 0;
+    margin: 4px auto 0;
     color: #a99fc9;
     font-size: 0.72rem;
     line-height: 1.35;
+    text-align: center;
 }
 .partner-line {
     position: absolute;
@@ -2768,7 +2779,15 @@ details[open] > summary .dropdown-icon::after {
         margin-top: 32px;
     }
     .partner-shell {
-        width: min(300px, 100%);
+        width: min(330px, 100%);
+        height: 300px;
+    }
+    .partner-card {
+        grid-template-rows: 22px 86px minmax(86px, 1fr);
+        padding: 36px 18px 28px;
+    }
+    .partner-copy {
+        min-height: 86px;
     }
 }
 
