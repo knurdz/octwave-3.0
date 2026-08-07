@@ -8,6 +8,7 @@ import Structure from "@/sections/Structure";
 import Workshops from "@/sections/Workshops";
 import Timeline from "@/sections/Timeline";
 import Rules from "@/sections/Rules";
+import Partners from "@/sections/Partners";
 import Team from "@/sections/Team";
 import Footer from "@/components/Footer";
 
@@ -25,6 +26,7 @@ export default function Page() {
           <Workshops />
           <Timeline />
           <Rules />
+          <Partners />
           <Team />
         </div>
       </main>

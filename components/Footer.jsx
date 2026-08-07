@@ -15,6 +15,7 @@ const footerLinks = [
   { href: "#workshops", label: "Workshops" },
   { href: "#timeline", label: "Timeline" },
   { href: "#rules", label: "Rules" },
+  { href: "#partners", label: "Partners" },
   { href: "#team", label: "Team" },
 ];
 

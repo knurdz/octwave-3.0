@@ -65,7 +65,8 @@ Co-chairs from IEEE IAS, University of Moratuwa:
 
 ## Partners
 
-- **Knurdz Community** · Web Partner
+- **Colombo West International Terminal (Private) Limited** - Gold Partner
+- **HackSL** - Digital Media Partner
 
 ---
 

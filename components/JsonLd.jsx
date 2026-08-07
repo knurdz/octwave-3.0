@@ -1,9 +1,9 @@
 import {
+  eventPartners,
   organization,
   siteDescription,
   siteName,
   siteUrl,
-  webPartner,
 } from "@/lib/seo";
 
 export default function JsonLd() {
@@ -45,11 +45,10 @@ export default function JsonLd() {
           },
         },
         organizer: { "@id": `${siteUrl}/#organization` },
-        sponsor: {
+        sponsor: eventPartners.map((partner) => ({
           "@type": "Organization",
-          name: webPartner.name,
-          url: webPartner.url,
-        },
+          name: partner.name,
+        })),
       },
     ],
   };
