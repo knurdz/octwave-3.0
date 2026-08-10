@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Button from "@/components/Button";
 import SectionAtmosphere from "@/components/SectionAtmosphere";
 import Reveal from "@/components/Reveal";
 
-const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
@@ -75,7 +73,6 @@ export default function Footer() {
               biggest stage.
             </p>
             <div className="site-footer-actions">
-              <Button href={REGISTRATION_URL}>Register now</Button>
               <a href={BOOKLET_URL} target="_blank" rel="noopener noreferrer" className="btn-outline site-footer-secondary">
                 View booklet
               </a>

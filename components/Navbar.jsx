@@ -13,23 +13,8 @@ const links = [
   { id: "team", label: "Team" },
 ];
 
-const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
-
-function ArrowIcon() {
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M7 17L17 7M17 7H9M17 7V15"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function MenuIcon({ open }) {
   return (
@@ -120,16 +105,6 @@ export default function Navbar() {
             Booklet
           </a>
 
-          <a
-            href={REGISTRATION_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="digi-nav-cta"
-          >
-            Register
-            <ArrowIcon />
-          </a>
-
           <button
             type="button"
             className="digi-nav-menu-btn"
@@ -163,16 +138,6 @@ export default function Navbar() {
               onClick={closeMenu}
             >
               Booklet
-            </a>
-            <a
-              href={REGISTRATION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="digi-nav-cta digi-nav-cta-full"
-              onClick={closeMenu}
-            >
-              Register
-              <ArrowIcon />
             </a>
           </div>
         </div>
