@@ -5,7 +5,6 @@ import Image from "next/image";
 import HeroVisual from "@/components/HeroVisual";
 import WaveDoodles from "@/components/WaveDoodles";
 
-const REGISTRATION_URL = "https://forms.gle/UcbBNwXAx5nZuNgF6";
 const BOOKLET_URL =
   "https://drive.google.com/file/d/1X7_9Bn6TLs3FUEidjqCLjhZHYE1LH3BP/view?usp=sharing";
 
@@ -45,34 +44,10 @@ function getRegistrationCountdown() {
   };
 }
 
-function ExternalArrowIcon() {
-  return (
-    <svg className="digi-promo-btn-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <path
-        d="M7 17 17 7M17 7H9M17 7v8"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function RegistrationCountdownWidget({ countdown }) {
   return (
     <div className="digi-reg-widget">
       <div className="digi-promo-actions">
-        <a
-          href={REGISTRATION_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="digi-promo-btn"
-          aria-label="Register for OctWave 3.0"
-        >
-          Register now
-          <ExternalArrowIcon />
-        </a>
         <a
           href={BOOKLET_URL}
           target="_blank"
@@ -304,7 +279,7 @@ export default function Home() {
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)}>
-            Registrations open
+            Registration closed
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -354,14 +329,6 @@ export default function Home() {
               Sri Lanka&apos;s premier undergraduate AI &amp; Machine Learning competition by IEEE IAS
               Student Branch Chapter, University of Moratuwa.
             </p>
-            <a
-              href={REGISTRATION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="digi-hero-mobile-register"
-            >
-              Register now
-            </a>
           </div>
         </div>
 
@@ -371,10 +338,10 @@ export default function Home() {
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Registrations open</p>
-              <p className="digi-promo-title">Register for OctWave 3.0</p>
+              <p className="digi-promo-eyebrow">Registration closed</p>
+              <p className="digi-promo-title">Team registration has closed</p>
               <p className="digi-promo-desc">
-                Submit your team details through the official registration form.
+                View the delegate booklet for schedule, structure, rules, and stage details.
               </p>
             </div>
             <RegistrationCountdownWidget countdown={countdown} />
