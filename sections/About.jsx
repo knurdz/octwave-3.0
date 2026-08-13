@@ -12,8 +12,8 @@ const pillars = [
   },
   {
     num: "02",
-    title: "Two-stage competition",
-    desc: "Online Kaggle preliminary followed by a physical final at University of Moratuwa with an industry judging panel.",
+    title: "Multi-stage competition",
+    desc: "Online Kaggle preliminary and Top 70 round, then a physical final at University of Moratuwa with an industry judging panel.",
   },
   {
     num: "03",

@@ -19,10 +19,14 @@ const weeks = [
   },
   {
     wk: "4",
-    title: "Top 10 Final Challenge Announced",
+    title: "Top 70 Round",
   },
   {
     wk: "5",
+    title: "Top 10 Final Challenge Announced",
+  },
+  {
+    wk: "6",
     title: "Grand Finale, Awards & Recognition",
   },
 ];
@@ -40,10 +44,10 @@ export default function Timeline() {
               Your <span className="accent-text">journey</span> unfolds
             </h2>
             <p className="section-sub section-sub-center">
-              Five weeks from registration to the awards stage.
+              Six weeks from registration to the awards stage.
             </p>
             <p className="timeline-status" role="status">
-              Registration closed
+              1st Round complete
             </p>
             <SectionIllustration variant="path" float={false} className="section-illu-path" />
           </Reveal>
