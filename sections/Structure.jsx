@@ -23,11 +23,18 @@ const phases = [
     num: "03",
     stage: "Compete",
     title: "Preliminary round · online",
-    desc: "Kaggle challenge. Top 10 teams advance based on the leaderboard.",
-    topics: ["Online", "Kaggle", "Top 10 advance"],
+    desc: "Kaggle challenge. Top 70 teams advance based on the leaderboard.",
+    topics: ["Online", "Kaggle", "Top 70 advance"],
   },
   {
     num: "04",
+    stage: "Advance",
+    title: "Top 70 Round · online",
+    desc: "Kaggle challenge for the shortlisted 70 teams. Top 10 teams advance based on the leaderboard.",
+    topics: ["Online", "Kaggle", "Top 10 advance"],
+  },
+  {
+    num: "05",
     stage: "Present",
     title: "Final round · physical at UOM",
     desc: "Industry dataset + live presentations to a panel. Ends with the awards ceremony at University of Moratuwa.",
@@ -45,7 +52,7 @@ export default function Structure() {
             <div>
               <p className="section-label">Event structure</p>
               <h2 className="section-title">
-                Four phases. <span className="accent-text">One goal.</span>
+                Five rounds. <span className="accent-text">One goal.</span>
               </h2>
             </div>
             <SectionIllustration variant="cascade" className="section-illu-header" />

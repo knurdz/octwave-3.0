@@ -60,7 +60,7 @@ function RegistrationCountdownWidget({ countdown }) {
       </div>
       <div className="digi-countdown" aria-live="polite">
         <p className="digi-countdown-label">
-          <span>{countdown?.closed ? "Registrations closed" : "Closes Aug 8, 11:59 PM"}</span>
+          <span>{countdown?.closed ? "1st Round complete" : "Closes Aug 8, 11:59 PM"}</span>
         </p>
         {countdown && !countdown.closed && (
           <div className="digi-countdown-grid" aria-label="Registration countdown">
@@ -279,7 +279,7 @@ export default function Home() {
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)}>
-            Registration closed
+            1st Round complete
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -338,8 +338,8 @@ export default function Home() {
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Registration closed</p>
-              <p className="digi-promo-title">Team registration has closed</p>
+              <p className="digi-promo-eyebrow">1st Round complete</p>
+              <p className="digi-promo-title">The first round is complete</p>
               <p className="digi-promo-desc">
                 View the delegate booklet for schedule, structure, rules, and stage details.
               </p>
