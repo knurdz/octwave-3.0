@@ -8,6 +8,7 @@ const links = [
   { id: "structure", label: "Structure" },
   { id: "workshops", label: "Workshops" },
   { id: "timeline", label: "Timeline" },
+  { id: "top65", label: "Top 65" },
   { id: "rules", label: "Rules" },
   { id: "partners", label: "Partners" },
   { id: "team", label: "Team" },

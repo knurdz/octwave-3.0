@@ -242,11 +242,60 @@ function RuleBook() {
   );
 }
 
+/* ── Top 65: roster lattice ──────────────────────────
+   A 13×5 node grid — sixty-five points, a few lit. */
+function RosterLattice() {
+  const cols = 13;
+  const rows = 5;
+  const ox = 22;
+  const oy = 50;
+  const gapX = 16;
+  const gapY = 24;
+  const nodes = Array.from({ length: cols * rows }, (_, i) => {
+    const c = i % cols;
+    const r = Math.floor(i / cols);
+    return { x: ox + c * gapX, y: oy + r * gapY, i };
+  });
+  const lit = new Set([3, 12, 21, 24, 33, 35, 42, 46, 55, 64]);
+  const path = `M${nodes[3].x} ${nodes[3].y} L${nodes[12].x} ${nodes[12].y} L${nodes[21].x} ${nodes[21].y} L${nodes[24].x} ${nodes[24].y} L${nodes[33].x} ${nodes[33].y} L${nodes[35].x} ${nodes[35].y} L${nodes[46].x} ${nodes[46].y} L${nodes[55].x} ${nodes[55].y} L${nodes[64].x} ${nodes[64].y}`;
+
+  return (
+    <svg viewBox="0 0 240 200" fill="none" aria-hidden="true" className="section-illu-svg">
+      <g className="illu-spin-slow">
+        <circle cx="120" cy="98" r="92" stroke={INK} strokeOpacity="0.28" strokeWidth="0.7" strokeDasharray="2 8" />
+      </g>
+      <circle cx="120" cy="98" r="68" stroke={INK} strokeOpacity="0.12" strokeWidth="0.7" />
+
+      <path d={path} stroke={INK} strokeOpacity="0.28" strokeWidth="0.9" className="illu-path-draw" />
+
+      {nodes.map((n) => {
+        const isLit = lit.has(n.i);
+        return (
+          <circle
+            key={n.i}
+            cx={n.x}
+            cy={n.y}
+            r={isLit ? 2.6 : 1.35}
+            fill={INK_BRIGHT}
+            fillOpacity={isLit ? 0.95 : 0.28}
+            className="illu-node"
+            style={{ animationDelay: `${(n.i % 12) * 0.12}s` }}
+          />
+        );
+      })}
+
+      <Crosshair x={18} y={18} />
+      <Crosshair x={222} y={178} opacity={0.25} />
+    </svg>
+  );
+}
+
 const ILLUSTRATIONS = {
   neural: NeuralNet,
   cascade: PhaseCascade,
   path: JourneyPath,
   book: RuleBook,
+  lattice: RosterLattice,
 };
 
 export default function SectionIllustration({

@@ -23,14 +23,14 @@ const phases = [
     num: "03",
     stage: "Compete",
     title: "Preliminary round · online",
-    desc: "Kaggle challenge. Top 70 teams advance based on the leaderboard.",
-    topics: ["Online", "Kaggle", "Top 70 advance"],
+    desc: "Kaggle challenge. Top 65 teams advance based on the leaderboard.",
+    topics: ["Online", "Kaggle", "Top 65 advance"],
   },
   {
     num: "04",
     stage: "Advance",
-    title: "Top 70 Round · online",
-    desc: "Kaggle challenge for the shortlisted 70 teams. Top 10 teams advance based on the leaderboard.",
+    title: "Top 65 Round · online",
+    desc: "Kaggle challenge for the shortlisted 65 teams. Top 10 teams advance based on the leaderboard.",
     topics: ["Online", "Kaggle", "Top 10 advance"],
   },
   {
