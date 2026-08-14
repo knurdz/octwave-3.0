@@ -12,7 +12,7 @@ const footerLinks = [
   { href: "#structure", label: "Structure" },
   { href: "#workshops", label: "Workshops" },
   { href: "#timeline", label: "Timeline" },
-  { href: "#top65", label: "Top 65" },
+  { href: "#top70", label: "Top 70" },
   { href: "#rules", label: "Rules" },
   { href: "#partners", label: "Partners" },
   { href: "#team", label: "Team" },

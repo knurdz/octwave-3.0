@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import SectionAtmosphere from "@/components/SectionAtmosphere";
 import SectionIllustration from "@/components/SectionIllustration";
 import Reveal from "@/components/Reveal";
-import { TOP65_TEAMS } from "@/lib/top65";
+import { TOP70_TEAMS } from "@/lib/top70";
 
 function SearchIcon() {
   return (
@@ -23,6 +23,8 @@ function initials(name) {
 
 function uniShort(name) {
   const aliases = {
+    "University of Ruhuna": "Ruhuna",
+    "University of Ruhuna Faculty of Engineering": "Ruhuna",
     "Sabaragamuwa University of Sri Lanka": "Sabaragamuwa",
     "Rajarata University of Sri Lanka": "Rajarata",
     "JIAT (Affiliated with IIC University)": "JIAT",
@@ -31,18 +33,18 @@ function uniShort(name) {
   return name.replace(/^University of /i, "").replace(/ University$/i, "");
 }
 
-export default function Top65() {
+export default function Top70() {
   const [query, setQuery] = useState("");
   const [uni, setUni] = useState("all");
 
   const universities = useMemo(
-    () => [...new Set(TOP65_TEAMS.map((team) => team.university))].sort((a, b) => a.localeCompare(b)),
+    () => [...new Set(TOP70_TEAMS.map((team) => team.university))].sort((a, b) => a.localeCompare(b)),
     []
   );
 
   const teams = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return TOP65_TEAMS.filter((team) => {
+    return TOP70_TEAMS.filter((team) => {
       if (uni !== "all" && team.university !== uni) return false;
       const hay = `${team.name} ${team.university}`.toLowerCase();
       return !q || hay.includes(q);
@@ -50,26 +52,26 @@ export default function Top65() {
   }, [query, uni]);
 
   const metrics = [
-    { value: String(TOP65_TEAMS.length).padStart(2, "0"), label: "Shortlisted" },
+    { value: String(TOP70_TEAMS.length).padStart(2, "0"), label: "Shortlisted" },
     { value: String(universities.length).padStart(2, "0"), label: "Universities" },
     { value: "01", label: "Online round" },
     { value: "10", label: "Advance next" },
   ];
 
   return (
-    <section id="top65" className="section section-atmosphere">
-      <SectionAtmosphere glow="tr" waves="default" parallax watermark="65" />
+    <section id="top70" className="section section-atmosphere">
+      <SectionAtmosphere glow="tr" waves="default" parallax watermark="70" />
 
       <div className="section-inner">
         <div className="parallax-layer" data-depth="0.1">
           <Reveal className="section-header section-header-split section-header-with-illu">
             <div>
-              <p className="section-label">Top 65</p>
+              <p className="section-label">Top 70</p>
               <h2 className="section-title">
                 The teams that <span className="accent-text">made the cut.</span>
               </h2>
               <p className="section-sub">
-                Advanced from the preliminary Kaggle round. These teams move on to the Top 65 Round.
+                Advanced from the preliminary Kaggle round. These teams move on to the Top 70 Round.
               </p>
             </div>
             <SectionIllustration variant="lattice" className="section-illu-header" />
@@ -102,7 +104,7 @@ export default function Top65() {
               />
             </label>
             <p className="shortlist-count">
-              {String(teams.length).padStart(2, "0")} / {String(TOP65_TEAMS.length).padStart(2, "0")}
+              {String(teams.length).padStart(2, "0")} / {String(TOP70_TEAMS.length).padStart(2, "0")}
             </p>
           </div>
 

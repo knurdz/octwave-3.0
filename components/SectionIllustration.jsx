@@ -242,19 +242,18 @@ function RuleBook() {
   );
 }
 
-/* ── Top 65: roster lattice ──────────────────────────
-   A 13×5 node grid — sixty-five points, a few lit. */
+/* ── Top 70: roster lattice ──────────────────────────
+   A 10×7 node grid — seventy points, a few lit. */
 function RosterLattice() {
-  const cols = 13;
-  const rows = 5;
+  const cols = 10;
+  const rows = 7;
   const ox = 22;
-  const oy = 50;
-  const gapX = 16;
-  const gapY = 24;
+  const oy = 30;
+  const gap = 20;
   const nodes = Array.from({ length: cols * rows }, (_, i) => {
     const c = i % cols;
     const r = Math.floor(i / cols);
-    return { x: ox + c * gapX, y: oy + r * gapY, i };
+    return { x: ox + c * gap, y: oy + r * gap, i };
   });
   const lit = new Set([3, 12, 21, 24, 33, 35, 42, 46, 55, 64]);
   const path = `M${nodes[3].x} ${nodes[3].y} L${nodes[12].x} ${nodes[12].y} L${nodes[21].x} ${nodes[21].y} L${nodes[24].x} ${nodes[24].y} L${nodes[33].x} ${nodes[33].y} L${nodes[35].x} ${nodes[35].y} L${nodes[46].x} ${nodes[46].y} L${nodes[55].x} ${nodes[55].y} L${nodes[64].x} ${nodes[64].y}`;
