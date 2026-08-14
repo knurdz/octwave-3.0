@@ -19,7 +19,7 @@ const weeks = [
   },
   {
     wk: "4",
-    title: "Top 65 Round",
+    title: "Top 70 Round",
   },
   {
     wk: "5",
