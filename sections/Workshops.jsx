@@ -24,6 +24,14 @@ const workshops = [
     tags: ["Time Series", "Feature Engineering", "Data Pipelines"],
     youtubeId: "6BVFUhtN1WA",
   },
+  {
+    num: "03",
+    title: "Getting Started with Kaggle",
+    host: "Workshop Series · Session 3",
+    desc: "A practical walkthrough of the Kaggle platform, competition workflow, submissions, and how to approach the OctWave preliminary round with confidence.",
+    tags: ["Kaggle", "Competition Workflow", "Submissions"],
+    youtubeId: "vuI-aCBbpaU",
+  },
 ];
 
 /* ─── Play icon SVG ──────────────────────────────────── */
