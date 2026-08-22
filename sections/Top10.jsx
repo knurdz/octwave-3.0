@@ -27,7 +27,7 @@ export default function Top10() {
               </p>
               <p className="finalists-status" role="status">
                 <span className="finalists-status-dot" aria-hidden="true" />
-                Placeholder roster · names to be updated
+                Official Top 10 Finalists
               </p>
             </div>
             <SectionIllustration variant="finalists" className="section-illu-header" />
