@@ -25,10 +25,6 @@ export default function Top10() {
               <p className="section-sub">
                 Advanced from the Top 70 Round. Next: the physical final at University of Moratuwa.
               </p>
-              <p className="finalists-status" role="status">
-                <span className="finalists-status-dot" aria-hidden="true" />
-                Official Top 10 Finalists
-              </p>
             </div>
             <SectionIllustration variant="finalists" className="section-illu-header" />
           </Reveal>
