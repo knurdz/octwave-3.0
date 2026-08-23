@@ -7,6 +7,7 @@ import About from "@/sections/About";
 import Structure from "@/sections/Structure";
 import Workshops from "@/sections/Workshops";
 import Timeline from "@/sections/Timeline";
+import Top10 from "@/sections/Top10";
 import Top70 from "@/sections/Top70";
 import Rules from "@/sections/Rules";
 import Partners from "@/sections/Partners";
@@ -26,6 +27,7 @@ export default function Page() {
           <Structure />
           <Workshops />
           <Timeline />
+          <Top10 />
           <Top70 />
           <Rules />
           <Partners />

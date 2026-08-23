@@ -289,12 +289,45 @@ function RosterLattice() {
   );
 }
 
+/* ── Top 10: ten nodes on a dashed ring ──────────── */
+function FinalistRing() {
+  const cx = 120;
+  const cy = 100;
+  const r = 64;
+  const nodes = Array.from({ length: 10 }, (_, i) => {
+    const a = (Math.PI * 2 * i) / 10 - Math.PI / 2;
+    return { x: cx + Math.cos(a) * r, y: cy + Math.sin(a) * r, i };
+  });
+
+  return (
+    <svg viewBox="0 0 240 200" fill="none" aria-hidden="true" className="section-illu-svg">
+      <g className="illu-spin-slow">
+        <circle cx={cx} cy={cy} r="88" stroke={INK} strokeOpacity="0.28" strokeWidth="0.7" strokeDasharray="2 8" />
+      </g>
+      <circle cx={cx} cy={cy} r={r} stroke={INK} strokeOpacity="0.45" strokeWidth="0.9" strokeDasharray="3 6" />
+      <circle cx={cx} cy={cy} r="36" stroke={INK} strokeOpacity="0.14" strokeWidth="0.7" />
+      <circle cx={cx} cy={cy} r="3" fill={INK_BRIGHT} className="illu-node" />
+
+      {nodes.map((n) => (
+        <g key={n.i} className="illu-node" style={{ animationDelay: `${n.i * 0.18}s` }}>
+          <circle cx={n.x} cy={n.y} r="9" stroke={INK} strokeOpacity="0.4" strokeWidth="0.7" strokeDasharray="2 4" fill="none" />
+          <circle cx={n.x} cy={n.y} r="2.4" fill={INK_BRIGHT} />
+        </g>
+      ))}
+
+      <Crosshair x={22} y={22} />
+      <Crosshair x={218} y={176} opacity={0.25} />
+    </svg>
+  );
+}
+
 const ILLUSTRATIONS = {
   neural: NeuralNet,
   cascade: PhaseCascade,
   path: JourneyPath,
   book: RuleBook,
   lattice: RosterLattice,
+  finalists: FinalistRing,
 };
 
 export default function SectionIllustration({
