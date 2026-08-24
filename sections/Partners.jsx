@@ -19,6 +19,14 @@ const PARTNERS = [
     logo: "/partners/hacksl.jpg",
     url: "https://www.linkedin.com/company/hacksl/?originalSubdomain=lk",
   },
+  {
+    name: "Knurdz",
+    fullName: "",
+    role: "Web Partner",
+    logo: "/partners/nurdz.png",
+    url: "https://knurdz.org",
+    invertLogo: true,
+  },
 ];
 
 export default function Partners() {
@@ -64,7 +72,7 @@ export default function Partners() {
                     alt={`${partner.name} logo`}
                     width={360}
                     height={220}
-                    className="partner-logo"
+                    className={`partner-logo${partner.invertLogo ? " partner-logo-invert" : ""}`}
                   />
                 </div>
                 <div className="partner-copy">
