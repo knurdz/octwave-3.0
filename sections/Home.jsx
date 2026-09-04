@@ -20,18 +20,159 @@ function clamp01(t) {
   return Math.min(1, Math.max(0, t));
 }
 
-// If the page loads already scrolled past this point (refresh mid-page),
-// entrance animations are skipped and the hero renders in its settled state.
 const INTRO_SCROLL_SKIP = 24;
-const REGISTRATION_DEADLINE = new Date("2026-08-08T23:59:00+05:30").getTime();
+const FINAL_DEADLINE = new Date("2026-09-12T08:30:00+05:30").getTime();
+
+const DIGIT_PATTERNS = {
+  "0": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+  "1": [
+    [0, 0, 1, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 1, 1, 1, 0],
+  ],
+  "2": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 1, 1, 0],
+    [0, 1, 0, 0, 0],
+    [1, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1],
+  ],
+  "3": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 1, 1, 0],
+    [0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+  "4": [
+    [0, 0, 0, 1, 0],
+    [0, 0, 1, 1, 0],
+    [0, 1, 0, 1, 0],
+    [1, 0, 0, 1, 0],
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 1, 0],
+    [0, 0, 0, 1, 0],
+  ],
+  "5": [
+    [1, 1, 1, 1, 1],
+    [1, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+  "6": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+  "7": [
+    [1, 1, 1, 1, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 1, 0],
+    [0, 0, 1, 0, 0],
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0],
+    [0, 1, 0, 0, 0],
+  ],
+  "8": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+  "9": [
+    [0, 1, 1, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 1],
+    [0, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [0, 1, 1, 1, 0],
+  ],
+};
+
+function DotMatrixSVG({ value }) {
+  const str = String(value).padStart(2, "0");
+  const chars = str.split("");
+
+  return (
+    <svg
+      viewBox="0 0 55 35"
+      className="dot-matrix-svg"
+      aria-label={str}
+      role="img"
+    >
+      <defs>
+        <filter id="dot-matrix-glow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="0.8" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      {chars.map((ch, charIdx) => {
+        const pattern = DIGIT_PATTERNS[ch] || DIGIT_PATTERNS["0"];
+        const colOffset = charIdx * 6; // 5 cols + 1 col gap
+        return (
+          <g key={charIdx}>
+            {pattern.map((row, rIdx) =>
+              row.map((dot, cIdx) => {
+                const cx = (colOffset + cIdx) * 5 + 2.5;
+                const cy = rIdx * 5 + 2.5;
+                const isOn = Boolean(dot);
+                return (
+                  <circle
+                    key={`${rIdx}-${cIdx}`}
+                    cx={cx}
+                    cy={cy}
+                    r={isOn ? 1.6 : 1.1}
+                    fill={isOn ? "#c4b5fd" : "rgba(183, 148, 246, 0.14)"}
+                    filter={isOn ? "url(#dot-matrix-glow)" : undefined}
+                  />
+                );
+              })
+            )}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 const COUNTDOWN_UNITS = [
-  { key: "days", label: "Days" },
-  { key: "hours", label: "Hours" },
-  { key: "minutes", label: "Mins" },
+  { key: "days", label: "DAYS" },
+  { key: "hours", label: "HOURS" },
+  { key: "minutes", label: "MIN" },
 ];
 
-function getRegistrationCountdown() {
-  const remaining = Math.max(0, REGISTRATION_DEADLINE - Date.now());
+function getFinalCountdown() {
+  const remaining = Math.max(0, FINAL_DEADLINE - Date.now());
   const day = 24 * 60 * 60 * 1000;
   const hour = 60 * 60 * 1000;
   const minute = 60 * 1000;
@@ -44,35 +185,32 @@ function getRegistrationCountdown() {
   };
 }
 
-function RegistrationCountdownWidget({ countdown }) {
+function HeroCountdownWidget() {
+  const [countdown, setCountdown] = useState(getFinalCountdown);
+
+  useEffect(() => {
+    const update = () => setCountdown(getFinalCountdown());
+    update();
+    const timer = setInterval(update, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="digi-reg-widget">
-      <div className="digi-promo-actions">
-        <a
-          href={BOOKLET_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="digi-promo-btn digi-promo-btn-secondary"
-          aria-label="View the OctWave 3.0 delegate booklet"
-        >
-          View booklet
-        </a>
+    <div className="dot-matrix-wrapper">
+      <div className="dot-matrix-header">
+        <span className="dot-matrix-date">September 12</span>
+        <span className="dot-matrix-sub">UNTIL FINAL DAY</span>
       </div>
-      <div className="digi-countdown" aria-live="polite">
-        <p className="digi-countdown-label">
-          <span>{countdown?.closed ? "Final round started" : "Closes Aug 8, 11:59 PM"}</span>
-        </p>
-        {countdown && !countdown.closed && (
-          <div className="digi-countdown-grid" aria-label="Registration countdown">
-            {COUNTDOWN_UNITS.map(({ key, label }, index) => (
-              <span className="digi-countdown-unit" key={key}>
-                <span className="digi-countdown-value">{String(countdown[key]).padStart(2, "0")}</span>
-                <span className="digi-countdown-name">{label}</span>
-                {index < COUNTDOWN_UNITS.length - 1 && <span className="digi-countdown-divider" aria-hidden="true" />}
-              </span>
-            ))}
-          </div>
-        )}
+      <div className="dot-matrix-container" aria-live="polite">
+        {COUNTDOWN_UNITS.map(({ key, label }) => {
+          const valStr = String(countdown[key]).padStart(2, "0");
+          return (
+            <div key={key} className="dot-matrix-card">
+              <DotMatrixSVG value={valStr} />
+              <span className="dot-matrix-label">{label}</span>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -81,7 +219,6 @@ function RegistrationCountdownWidget({ countdown }) {
 export default function Home() {
   const [visible, setVisible] = useState(false);
   const [instant, setInstant] = useState(false);
-  const [countdown, setCountdown] = useState(null);
   const titleRef = useRef(null);
   const versionRef = useRef(null);
   const wRef = useRef(null);
@@ -97,13 +234,6 @@ export default function Home() {
     }
     const t = setTimeout(() => setVisible(true), 100);
     return () => clearTimeout(t);
-  }, []);
-
-  useEffect(() => {
-    const updateCountdown = () => setCountdown(getRegistrationCountdown());
-    updateCountdown();
-    const timer = window.setInterval(updateCountdown, 30000);
-    return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -256,7 +386,6 @@ export default function Home() {
       : `opacity 0.9s cubic-bezier(.16,1,.3,1) ${delay}ms, transform 0.9s cubic-bezier(.16,1,.3,1) ${delay}ms`,
   });
 
-  // Robot rises from below while the title letters are still animating in
   const visualAnim = {
     opacity: visible ? 1 : 0,
     transform: visible ? "translateY(0)" : "translateY(110px)",
@@ -279,7 +408,7 @@ export default function Home() {
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)}>
-            Final round started
+            Final Challenge Begins
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -323,6 +452,7 @@ export default function Home() {
           W
         </span>
 
+        {/* Lower Right Area: Description + Clean Date Banner + 3 Dot-Matrix LED Cards (DAYS, HOURS, MIN) */}
         <div className="digi-hero-copy">
           <div style={anim(900)}>
             <p className="digi-hero-lead">
@@ -330,21 +460,35 @@ export default function Home() {
               Student Branch Chapter, University of Moratuwa.
             </p>
           </div>
+          <div style={anim(1000)} className="hero-lower-right-countdown">
+            <HeroCountdownWidget />
+          </div>
         </div>
 
+        {/* Lower Left Area: Promo Card with Booklet Button */}
         <div className="digi-promo-slot">
           <aside className="digi-promo-card" style={anim(1050)}>
             <div className="digi-promo-thumb">
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Final round started</p>
-              <p className="digi-promo-title">The final round has started</p>
+              <p className="digi-promo-eyebrow">Final Challenge Begins</p>
+              <p className="digi-promo-title">Final Challenge Begins</p>
               <p className="digi-promo-desc">
                 View the delegate booklet for schedule, structure, rules, and stage details.
               </p>
             </div>
-            <RegistrationCountdownWidget countdown={countdown} />
+            <div className="digi-promo-actions">
+              <a
+                href={BOOKLET_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="digi-promo-btn digi-promo-btn-secondary"
+                aria-label="View the OctWave 3.0 delegate booklet"
+              >
+                View booklet
+              </a>
+            </div>
           </aside>
         </div>
       </div>
