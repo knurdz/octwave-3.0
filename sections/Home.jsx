@@ -55,19 +55,19 @@ const DIGIT_PATTERNS = {
     [0, 1, 1, 1, 0],
     [1, 0, 0, 0, 1],
     [0, 0, 0, 0, 1],
-    [0, 0, 1, 1, 0],
+    [0, 1, 1, 1, 0],
     [0, 0, 0, 0, 1],
     [1, 0, 0, 0, 1],
     [0, 1, 1, 1, 0],
   ],
   "4": [
-    [0, 0, 0, 1, 0],
-    [0, 0, 1, 1, 0],
-    [0, 1, 0, 1, 0],
-    [1, 0, 0, 1, 0],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
+    [1, 0, 0, 0, 1],
     [1, 1, 1, 1, 1],
-    [0, 0, 0, 1, 0],
-    [0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
   ],
   "5": [
     [1, 1, 1, 1, 1],
@@ -75,7 +75,7 @@ const DIGIT_PATTERNS = {
     [1, 1, 1, 1, 0],
     [0, 0, 0, 0, 1],
     [0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
     [0, 1, 1, 1, 0],
   ],
   "6": [
@@ -111,14 +111,15 @@ const DIGIT_PATTERNS = {
     [1, 0, 0, 0, 1],
     [0, 1, 1, 1, 1],
     [0, 0, 0, 0, 1],
-    [1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 1],
     [0, 1, 1, 1, 0],
   ],
 };
 
-function DotMatrixSVG({ value }) {
+function DotMatrixSVG({ value, unitKey }) {
   const str = String(value).padStart(2, "0");
   const chars = str.split("");
+  const filterId = `dot-matrix-glow-${unitKey || "default"}`;
 
   return (
     <svg
@@ -128,7 +129,7 @@ function DotMatrixSVG({ value }) {
       role="img"
     >
       <defs>
-        <filter id="dot-matrix-glow" x="-20%" y="-20%" width="140%" height="140%">
+        <filter id={filterId} x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="0.8" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
@@ -136,30 +137,29 @@ function DotMatrixSVG({ value }) {
           </feMerge>
         </filter>
       </defs>
-      {chars.map((ch, charIdx) => {
+      {Array.from({ length: 11 }).map((_, col) => {
+        const isGap = col === 5;
+        const charIdx = col < 5 ? 0 : 1;
+        const cIdx = col < 5 ? col : col - 6;
+        const ch = chars[charIdx] || "0";
         const pattern = DIGIT_PATTERNS[ch] || DIGIT_PATTERNS["0"];
-        const colOffset = charIdx * 6; // 5 cols + 1 col gap
-        return (
-          <g key={charIdx}>
-            {pattern.map((row, rIdx) =>
-              row.map((dot, cIdx) => {
-                const cx = (colOffset + cIdx) * 5 + 2.5;
-                const cy = rIdx * 5 + 2.5;
-                const isOn = Boolean(dot);
-                return (
-                  <circle
-                    key={`${rIdx}-${cIdx}`}
-                    cx={cx}
-                    cy={cy}
-                    r={isOn ? 1.6 : 1.1}
-                    fill={isOn ? "#c4b5fd" : "rgba(183, 148, 246, 0.14)"}
-                    filter={isOn ? "url(#dot-matrix-glow)" : undefined}
-                  />
-                );
-              })
-            )}
-          </g>
-        );
+
+        return Array.from({ length: 7 }).map((_, rIdx) => {
+          const cx = col * 5 + 2.5;
+          const cy = rIdx * 5 + 2.5;
+          const isOn = !isGap && Boolean(pattern[rIdx][cIdx]);
+
+          return (
+            <circle
+              key={`${rIdx}-${col}`}
+              cx={cx}
+              cy={cy}
+              r={isOn ? 1.6 : 1.1}
+              fill={isOn ? "#c4b5fd" : "rgba(183, 148, 246, 0.14)"}
+              filter={isOn ? `url(#${filterId})` : undefined}
+            />
+          );
+        });
       })}
     </svg>
   );
@@ -196,21 +196,24 @@ function HeroCountdownWidget() {
   }, []);
 
   return (
-    <div className="dot-matrix-wrapper">
-      <div className="dot-matrix-header">
-        <span className="dot-matrix-date">September 12</span>
-        <span className="dot-matrix-sub">UNTIL FINAL DAY</span>
+    <div className="final-day-widget">
+      <div className="final-day-header">
+        <span className="final-day-date">September 12</span>
+        <span className="final-day-badge">FINAL DAY</span>
       </div>
       <div className="dot-matrix-container" aria-live="polite">
         {COUNTDOWN_UNITS.map(({ key, label }) => {
           const valStr = String(countdown[key]).padStart(2, "0");
           return (
             <div key={key} className="dot-matrix-card">
-              <DotMatrixSVG value={valStr} />
+              <DotMatrixSVG value={valStr} unitKey={key} />
               <span className="dot-matrix-label">{label}</span>
             </div>
           );
         })}
+      </div>
+      <div className="final-day-caption">
+        Until Final Day
       </div>
     </div>
   );
