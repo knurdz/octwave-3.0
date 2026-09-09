@@ -21,7 +21,7 @@ function clamp01(t) {
 }
 
 const INTRO_SCROLL_SKIP = 24;
-const FINAL_DEADLINE = new Date("2026-09-12T08:30:00+05:30").getTime();
+const FINAL_DEADLINE = new Date("2026-09-20T08:30:00+05:30").getTime();
 
 const DIGIT_PATTERNS = {
   "0": [
@@ -198,7 +198,7 @@ function HeroCountdownWidget() {
   return (
     <div className="final-day-widget">
       <div className="final-day-header">
-        <span className="final-day-date">September 12</span>
+        <span className="final-day-date">September 20</span>
         <span className="final-day-badge">FINAL DAY</span>
       </div>
       <div className="dot-matrix-container" aria-live="polite">
