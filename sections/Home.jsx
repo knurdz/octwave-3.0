@@ -186,14 +186,16 @@ function getFinalCountdown() {
 }
 
 function HeroCountdownWidget() {
-  const [countdown, setCountdown] = useState(getFinalCountdown);
+  const [countdown, setCountdown] = useState(null);
 
   useEffect(() => {
     const update = () => setCountdown(getFinalCountdown());
     update();
-    const timer = setInterval(update, 1000);
+    const timer = setInterval(update, 60_000);
     return () => clearInterval(timer);
   }, []);
+
+  const display = countdown ?? { days: 0, hours: 0, minutes: 0 };
 
   return (
     <div className="final-day-widget">
@@ -203,7 +205,7 @@ function HeroCountdownWidget() {
       </div>
       <div className="dot-matrix-container" aria-live="polite">
         {COUNTDOWN_UNITS.map(({ key, label }) => {
-          const valStr = String(countdown[key]).padStart(2, "0");
+          const valStr = String(display[key]).padStart(2, "0");
           return (
             <div key={key} className="dot-matrix-card">
               <DotMatrixSVG value={valStr} unitKey={key} />
