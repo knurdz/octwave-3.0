@@ -413,7 +413,7 @@ export default function Home() {
       <div className="digi-hero-inner" ref={heroInnerRef}>
         <div className="digi-hero-title-block">
           <p className="hero-reg-status" role="status" style={anim(200)}>
-            Final Challenge Begins
+            Final Challenge Concluded
           </p>
           <h1 className="digi-hero-title" aria-label="OctWave 3.0">
             <span className="sr-only">
@@ -477,8 +477,8 @@ export default function Home() {
               <Image src="/logo.jpeg" alt="" width={72} height={72} className="digi-promo-img" />
             </div>
             <div className="digi-promo-body">
-              <p className="digi-promo-eyebrow">Final Challenge Begins</p>
-              <p className="digi-promo-title">Final Challenge Begins</p>
+              <p className="digi-promo-eyebrow">Final Challenge Concluded</p>
+              <p className="digi-promo-title">Final Challenge Concluded</p>
               <p className="digi-promo-desc">
                 View the delegate booklet for schedule, structure, rules, and stage details.
               </p>

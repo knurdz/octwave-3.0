@@ -47,7 +47,7 @@ export default function Timeline() {
               Six weeks from registration to the awards stage.
             </p>
             <p className="timeline-status" role="status">
-              Final Challenge Begins
+              Final Challenge Concluded
             </p>
             <SectionIllustration variant="path" float={false} className="section-illu-path" />
           </Reveal>
