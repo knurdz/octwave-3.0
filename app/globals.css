@@ -3923,3 +3923,470 @@ details[open] > summary .dropdown-icon::after {
     }
     .codebook-clause-text { font-size: 0.875rem; }
 }
+
+/* ─── Winners Podium & Showcase ─────────────────────── */
+.winners-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(183, 148, 246, 0.24);
+    background: rgba(183, 148, 246, 0.06);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+}
+.winners-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #34d399;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.8);
+    animation: pulseDot 2.2s ease-in-out infinite;
+}
+.winners-podium {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: end;
+    margin-top: 48px;
+}
+.winner-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    border-radius: 16px;
+    background:
+        radial-gradient(300px circle at 50% 0%, rgba(183, 148, 246, 0.12), transparent 70%),
+        rgba(10, 10, 15, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    order: var(--podium-order, 1);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    overflow: hidden;
+}
+.winner-card:hover {
+    transform: translateY(-6px);
+}
+.winner-card-champion {
+    transform: translateY(-14px);
+    border-color: rgba(250, 204, 21, 0.35);
+    background:
+        radial-gradient(360px circle at 50% 0%, rgba(250, 204, 21, 0.18), transparent 70%),
+        radial-gradient(280px circle at 50% 100%, rgba(124, 58, 237, 0.2), transparent 60%),
+        rgba(13, 12, 18, 0.85);
+    box-shadow: 0 16px 40px -12px rgba(250, 204, 21, 0.16), 0 0 30px rgba(183, 148, 246, 0.1);
+}
+.winner-card-champion:hover {
+    transform: translateY(-20px);
+    box-shadow: 0 24px 50px -12px rgba(250, 204, 21, 0.25), 0 0 45px rgba(183, 148, 246, 0.2);
+}
+.winner-card-silver {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 12px 32px -10px rgba(56, 189, 248, 0.12);
+}
+.winner-card-silver:hover {
+    border-color: rgba(56, 189, 248, 0.45);
+    box-shadow: 0 18px 40px -10px rgba(56, 189, 248, 0.22);
+}
+.winner-card-bronze {
+    border-color: rgba(251, 146, 60, 0.25);
+    box-shadow: 0 12px 32px -10px rgba(251, 146, 60, 0.12);
+}
+.winner-card-bronze:hover {
+    border-color: rgba(251, 146, 60, 0.45);
+    box-shadow: 0 18px 40px -10px rgba(251, 146, 60, 0.22);
+}
+.winner-frame-border {
+    position: absolute;
+    inset: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    pointer-events: none;
+    z-index: 1;
+}
+.winner-tick {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    pointer-events: none;
+    z-index: 2;
+}
+.winner-tick-tl { top: 7px; left: 7px; border-top: 1.5px solid var(--accent-soft); border-left: 1.5px solid var(--accent-soft); }
+.winner-tick-tr { top: 7px; right: 7px; border-top: 1.5px solid var(--accent-soft); border-right: 1.5px solid var(--accent-soft); }
+.winner-tick-bl { bottom: 7px; left: 7px; border-bottom: 1.5px solid var(--accent-soft); border-left: 1.5px solid var(--accent-soft); }
+.winner-tick-br { bottom: 7px; right: 7px; border-bottom: 1.5px solid var(--accent-soft); border-right: 1.5px solid var(--accent-soft); }
+
+.winner-card-champion .winner-tick { border-color: #facc15; }
+.winner-card-silver .winner-tick { border-color: #38bdf8; }
+.winner-card-bronze .winner-tick { border-color: #fb923c; }
+
+.winner-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 18px;
+}
+.winner-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+.winner-card-champion .winner-badge-pill {
+    background: rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(250, 204, 21, 0.4);
+    color: #fef08a;
+}
+.winner-card-silver .winner-badge-pill {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    color: #bae6fd;
+}
+.winner-card-bronze .winner-badge-pill {
+    background: rgba(251, 146, 60, 0.15);
+    border: 1px solid rgba(251, 146, 60, 0.4);
+    color: #fed7aa;
+}
+.winner-trophy-icon {
+    width: 15px;
+    height: 15px;
+    color: #facc15;
+}
+.winner-rank-num {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.28);
+}
+.winner-photo-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: #020204;
+    cursor: pointer;
+    z-index: 2;
+    padding: 0;
+    margin-bottom: 20px;
+    outline: none;
+}
+.winner-photo-img {
+    object-fit: cover;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+}
+.winner-photo-wrapper:hover .winner-photo-img {
+    transform: scale(1.04);
+}
+.winner-photo-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 8, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.winner-photo-wrapper:hover .winner-photo-overlay,
+.winner-photo-wrapper:focus-visible .winner-photo-overlay {
+    opacity: 1;
+}
+.winner-photo-zoom-prompt {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(183, 148, 246, 0.9);
+    color: #050508;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    transform: translateY(4px);
+    transition: transform 0.25s ease;
+}
+.winner-photo-wrapper:hover .winner-photo-zoom-prompt {
+    transform: translateY(0);
+}
+.winner-zoom-icon {
+    width: 13px;
+    height: 13px;
+}
+.winner-card-info {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+.winner-prize-tag {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.winner-prize-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+}
+.winner-prize-amount {
+    font-family: var(--font-mono, monospace);
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+}
+.winner-card-champion .winner-prize-amount {
+    color: #fde047;
+    text-shadow: 0 0 14px rgba(250, 204, 21, 0.4);
+}
+.winner-card-silver .winner-prize-amount {
+    color: #7dd3fc;
+    text-shadow: 0 0 14px rgba(56, 189, 248, 0.35);
+}
+.winner-card-bronze .winner-prize-amount {
+    color: #fdba74;
+    text-shadow: 0 0 14px rgba(251, 146, 60, 0.35);
+}
+.winner-team-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin-bottom: 6px;
+    line-height: 1.25;
+}
+.winner-uni-name {
+    font-size: 0.85rem;
+    color: var(--accent-soft);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Lightbox Modal */
+.winner-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(3, 3, 6, 0.85);
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.25s ease-out;
+}
+.winner-modal-content {
+    position: relative;
+    max-width: 960px;
+    width: 100%;
+    background: rgba(14, 14, 20, 0.95);
+    border: 1px solid rgba(183, 148, 246, 0.3);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(183, 148, 246, 0.2);
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.winner-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 10;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+}
+.winner-modal-close:hover {
+    background: rgba(183, 148, 246, 0.8);
+    color: #000;
+    transform: scale(1.08);
+}
+.winner-close-icon {
+    width: 18px;
+    height: 18px;
+}
+.winner-modal-image-wrap {
+    position: relative;
+    width: 100%;
+    max-height: 72vh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.winner-modal-img {
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+}
+.winner-modal-caption {
+    padding: 20px 26px;
+    background: rgba(8, 8, 12, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.winner-modal-caption-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+.winner-modal-prize {
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(183, 148, 246, 0.15);
+    border: 1px solid rgba(183, 148, 246, 0.3);
+    color: #fff;
+}
+.winner-modal-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+}
+.winner-modal-uni {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* ─── Archive Header Accordion ─────────────────────── */
+.archive-toggle-header {
+    background: none;
+    border: none;
+    padding: 0;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    outline: none;
+    transition: opacity 0.2s;
+}
+
+.archive-toggle-header:hover {
+    opacity: 0.95;
+}
+
+.archive-toggle-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 32px;
+}
+
+.archive-toggle-action {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.archive-toggle-hint {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    opacity: 0.75;
+    transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s;
+}
+
+.archive-toggle-header:hover .archive-toggle-hint,
+.archive-toggle-header:focus-visible .archive-toggle-hint {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.archive-toggle-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    transition: all 0.3s ease;
+}
+
+.archive-toggle-header:hover .archive-toggle-icon {
+    background: rgba(183, 148, 246, 0.08);
+    border-color: rgba(183, 148, 246, 0.25);
+    transform: translateY(2px);
+}
+
+.archive-chevron-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-soft);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.archive-chevron-icon.is-open {
+    transform: rotate(180deg);
+    color: var(--accent);
+}
+
+.archive-expandable-wrapper {
+    position: relative;
+    transition: opacity 0.4s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+    .winners-podium {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 20px;
+    }
+    .winner-card {
+        order: unset !important;
+    }
+    .winner-card-champion {
+        transform: none;
+    }
+    .winner-card-champion:hover {
+        transform: translateY(-6px);
+    }
+    .archive-toggle-right {
+        gap: 16px;
+    }
+    .archive-toggle-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
+
