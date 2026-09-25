@@ -233,8 +233,10 @@ export default function Home() {
 
   useEffect(() => {
     if (window.scrollY > INTRO_SCROLL_SKIP) {
-      setInstant(true);
-      setVisible(true);
+      setTimeout(() => {
+        setInstant(true);
+        setVisible(true);
+      }, 0);
       return;
     }
     const t = setTimeout(() => setVisible(true), 100);
